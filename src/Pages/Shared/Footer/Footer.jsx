@@ -1,4 +1,4 @@
-import { Container, Grid, ListItem, ListItemIcon, ListItemText, Typography } from '@mui/material';
+import { Container, Grid, ListItem, ListItemIcon, ListItemText, Typography, Box } from '@mui/material';
 import React from 'react';
 import FooterTitle from './FooterTitle'
 import { makeStyles } from '@mui/styles';
@@ -15,7 +15,7 @@ const useStyles = makeStyles({
     root: {
         backgroundColor: '#2C3E50',
         color: "#9AA7AF",
-        fontSize: "14px",
+        fontSize: "12px",
         marginTop: 100,
         textAlign: "left",
         padding: "30px 0"
@@ -37,24 +37,22 @@ const useStyles = makeStyles({
         alignItems: "flex-start",
         padding: 0
     },
-   
-    IconStyle:{
-        color:"#fff",
-        background:"#00ADEF",
-        fontSize:"16px",
-        padding:"6px",
-        borderRadius:2,
+    IconStyle: {
+        color: "#fff",
+        background: "#00ADEF",
+        fontSize: "16px",
+        padding: "6px",
+        borderRadius: 5,
         '&:hover': {
             background: '#fff !important',
             color: '#00ADEF !important',
-            trans
         }
     }
 });
 
 
 const Footer = () => {
-    const { root, logo, logoSpan, list,IconStyle,IconListStyle } = useStyles()
+    const { root, logo, logoSpan, list, IconStyle, IconListStyle } = useStyles()
     return (
         <>
             <div className={root}>
@@ -86,43 +84,45 @@ const Footer = () => {
                                 <ListItemText primary="Features" />
                             </ListItem>
                         </Grid>
-                        <Grid item xs={12} md={3}>
-                            <FooterTitle text={"Menu"} />
-                            <ListItem>
-                                <ListItemIcon>
-                                    <HomeIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="Home" />
+                        <Grid item xs={12} md={3} >
+                            <Box className={list}>
+                                <FooterTitle text={"Social icons"} />
+                                <ListItem sx={{ p: 0 }}>
+                                    <ListItemIcon>
+                                        <HomeIcon sx={{ color: "#9AA7AF" }} />
+                                    </ListItemIcon>
+                                    <ListItemText primary="No 123, Rode Island, USA" />
 
-                            </ListItem>
-                            <ListItem>
-                                <ListItemIcon>
-                                    <CallIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="Home" />
+                                </ListItem>
+                                <ListItem  sx={{ p: 0 }}>
+                                    <ListItemIcon>
+                                        <CallIcon sx={{ color: "#9AA7AF" }} />
+                                    </ListItemIcon>
+                                    <ListItemText primary="(+88) 01991666031" />
 
-                            </ListItem>
-                            <ListItem>
-                                <ListItemIcon>
-                                    <EmailIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="Home" />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemIcon className={IconListStyle}>
-                                    <FacebookIcon className={IconStyle}  />
-                                </ListItemIcon>
-                                <ListItemIcon>
-                                    <InstagramIcon  className={IconStyle} />
-                                </ListItemIcon>
-                                <ListItemIcon>
-                                    <LinkedInIcon  className={IconStyle} />
-                                </ListItemIcon>
-                                <ListItemIcon>
-                                    <GitHubIcon  className={IconStyle} />
-                                </ListItemIcon>
-                                
-                            </ListItem>
+                                </ListItem>
+                                <ListItem sx={{ p: 0 }}>
+                                    <ListItemIcon>
+                                        <EmailIcon sx={{ color: "#9AA7AF" }} />
+                                    </ListItemIcon>
+                                    <ListItemText primary="Email: iamazadur@gmail.com" />
+                                </ListItem>
+                                <ListItem sx={{ p: 0 }}>
+                                    <ListItemIcon className={IconListStyle}>
+                                        <FacebookIcon className={IconStyle} />
+                                    </ListItemIcon>
+                                    <ListItemIcon>
+                                        <InstagramIcon className={IconStyle} />
+                                    </ListItemIcon>
+                                    <ListItemIcon>
+                                        <LinkedInIcon className={IconStyle} />
+                                    </ListItemIcon>
+                                    <ListItemIcon>
+                                        <GitHubIcon className={IconStyle} />
+                                    </ListItemIcon>
+
+                                </ListItem>
+                            </Box>
                         </Grid>
                     </Grid>
                 </Container>
