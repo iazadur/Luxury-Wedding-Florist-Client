@@ -23,10 +23,15 @@ export default function Register() {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         // eslint-disable-next-line no-console
-        console.log({
+        const firstName = data.get('firstName')
+        const lastName = data.get('lastName')
+        const name = firstName + " " + lastName
+        const userData = {
+            name,
             email: data.get('email'),
             password: data.get('password'),
-        });
+        }
+        console.log(userData);
     };
 
     return (

@@ -5,8 +5,9 @@ import {
   Route
 } from "react-router-dom";
 import Home from './Pages/Home/Home/Home';
-import Login from './Pages/Login/Login';
-import Register from './Pages/Register/Register';
+import Register from './Pages/Login/Register/Register';
+import Login from './Pages/Login/Login/Login';
+import Dashboard from './Pages/DashBoard/Dashboard';
 
 function App() {
   return (
@@ -18,6 +19,9 @@ function App() {
           </Route>
           <Route path="/register">
             <Register />
+          </Route>
+          <Route path="/dashboard">
+            <Dashboard />
           </Route>
           <Route path="/">
             <Home />

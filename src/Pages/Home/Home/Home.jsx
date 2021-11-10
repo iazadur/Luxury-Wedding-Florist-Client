@@ -1,11 +1,13 @@
 import React from 'react';
-import Navigation from '../Navigation/Navigation';
+import Footer from '../../Shared/Footer/Footer';
+import Navigation from '../../Shared/Navigation/Navigation';
 
 const Home = () => {
     return (
         <>
             <Navigation />
-           
+
+            <Footer />
 
         </>
     );
