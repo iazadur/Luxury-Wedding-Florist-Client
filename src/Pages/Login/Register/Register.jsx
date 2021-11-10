@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -13,19 +13,28 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { NavLink } from 'react-router-dom';
+import useAuth from '../../../Hooks/useAuth';
+import { useHistory } from 'react-router-dom';
 
 
 
 const theme = createTheme();
 
 export default function Register() {
+
+    const { registerUser } = useAuth();
+    const history = useHistory()
+
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
+
         // eslint-disable-next-line no-console
         const firstName = data.get('firstName')
         const lastName = data.get('lastName')
         const name = firstName + " " + lastName
+
+        registerUser(data.get('email'), data.get('password'), name, history)
         const userData = {
             name,
             email: data.get('email'),

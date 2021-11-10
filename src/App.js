@@ -8,27 +8,30 @@ import Home from './Pages/Home/Home/Home';
 import Register from './Pages/Login/Register/Register';
 import Login from './Pages/Login/Login/Login';
 import Dashboard from './Pages/DashBoard/Dashboard';
+import AuthProvider from './Context/AuthProvider/AuthProvider';
 
 function App() {
   return (
     <div className="App">
-      <Router>
-        <Switch>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/register">
-            <Register />
-          </Route>
-          <Route path="/dashboard">
-            <Dashboard />
-          </Route>
-          <Route path="/">
-            <Home />
+      <AuthProvider>
+        <Router>
+          <Switch>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route path="/register">
+              <Register />
+            </Route>
+            <Route path="/dashboard">
+              <Dashboard />
+            </Route>
+            <Route path="/">
+              <Home />
 
-          </Route>
-        </Switch>
-      </Router>
+            </Route>
+          </Switch>
+        </Router>
+      </AuthProvider>
     </div>
   );
 }
