@@ -12,6 +12,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { NavLink } from 'react-router-dom';
 
 
 
@@ -107,9 +108,12 @@ export default function Register() {
                         </Button>
                         <Grid container justifyContent="flex-end">
                             <Grid item>
-                                <Link href="#" variant="body2">
-                                    Already have an account? Sign in
-                                </Link>
+                                <NavLink to="/login">
+                                    <Link variant="body2">
+                                        {" Already have an account? Sign in"}
+                                    </Link>
+                                </NavLink>
+
                             </Grid>
                         </Grid>
                     </Box>
