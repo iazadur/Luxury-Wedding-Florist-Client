@@ -21,7 +21,7 @@ const ClientSpeak = ({ username, img, review, rating }) => {
 
 
                     <CardContent>
-                        <Typography variant="body2" color="text.secondary">
+                        <Typography sx={{bgcolor:"#ECF0F1",p:1,borderRadius:3}} variant="body2" color="text.secondary">
                             {review}
                         </Typography>
                     </CardContent>
