@@ -1,20 +1,16 @@
 import React from 'react';
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { NavLink } from 'react-router-dom';
 import useAuth from '../../../Hooks/useAuth';
 import { useHistory } from 'react-router-dom';
+import { Button, Container, Grid, TextField, Typography, CircularProgress, Alert } from '@mui/material';
 
 
 
@@ -22,7 +18,7 @@ const theme = createTheme();
 
 export default function Register() {
 
-    const { registerUser } = useAuth();
+    const { registerUser, isLoading, user, authError } = useAuth()
     const history = useHistory()
 
     const handleSubmit = (event) => {
@@ -34,13 +30,12 @@ export default function Register() {
         const lastName = data.get('lastName')
         const name = firstName + " " + lastName
 
-        registerUser(data.get('email'), data.get('password'), name, history)
-        const userData = {
-            name,
-            email: data.get('email'),
-            password: data.get('password'),
+        if (data.get('password') !== data.get('password1')) {
+            return alert("Your password didn't match")
         }
-        console.log(userData);
+        registerUser(data.get('email'), data.get('password1'), name, history)
+
+
     };
 
     return (
@@ -106,6 +101,17 @@ export default function Register() {
                                 />
                             </Grid>
                             <Grid item xs={12}>
+                                <TextField
+                                    required
+                                    fullWidth
+                                    name="password1"
+                                    label="Confirm Password"
+                                    type="password"
+                                    id="password1"
+                                    autoComplete="new-password"
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
                                 <FormControlLabel
                                     control={<Checkbox value="allowExtraEmails" color="primary" />}
                                     label="I want to receive inspiration, marketing promotions and updates via email."
@@ -130,6 +136,9 @@ export default function Register() {
 
                             </Grid>
                         </Grid>
+                        {isLoading && <CircularProgress disableShrink />}
+                        {user?.email && <Alert severity="success">User Created Successfully!</Alert>}
+                        {authError && <Alert severity="error">{authError}</Alert>}
                     </Box>
                 </Box>
             </Container>

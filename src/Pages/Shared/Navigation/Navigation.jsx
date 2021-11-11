@@ -8,10 +8,12 @@ import IconButton from '@mui/material/IconButton';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import { Avatar, Container, Divider, ListItemIcon, Tooltip } from '@mui/material';
-import { Logout, PersonAdd, Settings } from '@mui/icons-material';
+import { Logout } from '@mui/icons-material';
 import { NavLink } from 'react-router-dom';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 
 import { makeStyles } from '@mui/styles';
+import useAuth from '../../../Hooks/useAuth';
 const useStyles = makeStyles({
     logo: {
         color: "#fff",
@@ -23,12 +25,17 @@ const useStyles = makeStyles({
     logoSpan: {
         fontSize: "16px",
         color: "#F1C40F"
+    },
+    textD:{
+        textDecoration:"none !important",
+        color:"rgba(0, 0, 0, 0.87) !important"
     }
 })
 
 export default function Navigation() {
     const [anchorEl, setAnchorEl] = useState(null);
-
+    const { user, logout } = useAuth()
+    console.log(user);
 
 
     const open = Boolean(anchorEl);
@@ -39,7 +46,7 @@ export default function Navigation() {
         setAnchorEl(null);
     };
 
-    const { logo, logoSpan } = useStyles()
+    const { logo, logoSpan,textD } = useStyles()
     return (
 
         <Box sx={{ flexGrow: 1 }}>
@@ -72,14 +79,17 @@ export default function Navigation() {
 
 
                         <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
-                            <NavLink sx={{ textDecoration: "none" }} to="/login">
-                                <Typography sx={{ color: "#fff" }}>Login</Typography>
-                            </NavLink>
-                            <Tooltip title="Account settings">
-                                <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }}>
-                                    <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
-                                </IconButton>
-                            </Tooltip>
+                            {
+                                !user?.email ? <NavLink sx={{ textDecoration: "none" }} to="/login">
+                                    <Typography sx={{ color: "#fff" }}>Login</Typography>
+                                </NavLink> :
+                                    <Tooltip title="Account settings">
+                                        <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }}>
+                                            <Avatar src={user.photoURL} sx={{ width: 32, height: 32 }}>M</Avatar>
+                                        </IconButton>
+                                    </Tooltip>
+                            }
+
                         </Box>
                         <Menu
                             anchorEl={anchorEl}
@@ -115,26 +125,14 @@ export default function Navigation() {
                             transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                         >
-                            <MenuItem>
-                                <Avatar /> Profile
-                            </MenuItem>
-                            <MenuItem>
-                                <Avatar /> My account
-                            </MenuItem>
+                            <NavLink to="/dashboard" className={textD} >
+                                <MenuItem >
+                                    <DashboardIcon sx={{color:"gray", mr:1}} /> Dashboard
+                                </MenuItem>
+                            </NavLink>
                             <Divider />
-                            <MenuItem>
-                                <ListItemIcon>
-                                    <PersonAdd fontSize="small" />
-                                </ListItemIcon>
-                                Add another account
-                            </MenuItem>
-                            <MenuItem>
-                                <ListItemIcon>
-                                    <Settings fontSize="small" />
-                                </ListItemIcon>
-                                Settings
-                            </MenuItem>
-                            <MenuItem>
+
+                            <MenuItem onClick={logout}>
                                 <ListItemIcon>
                                     <Logout fontSize="small" />
                                 </ListItemIcon>

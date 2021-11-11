@@ -12,23 +12,33 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory, useLocation } from 'react-router-dom';
+import useAuth from '../../../Hooks/useAuth';
+import { Alert, CircularProgress } from '@mui/material';
 
 
 
 const theme = createTheme();
 
 export default function Login() {
+  const { loginUser, isLoading, user, authError, signInWithGoogle } = useAuth()
+  const location = useLocation();
+  const history = useHistory();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     // eslint-disable-next-line no-console
+    loginUser(data.get('email'), data.get('password'), location, history)
     console.log({
       email: data.get('email'),
       password: data.get('password'),
     });
   };
 
+
+  const handleGoogleSignIn = () => {
+    signInWithGoogle(location, history)
+  }
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -94,9 +104,12 @@ export default function Login() {
                 </NavLink>
               </Grid>
             </Grid>
+            {isLoading && <CircularProgress disableShrink />}
+            {user?.email && <Alert severity="success">User Created Successfully!</Alert>}
+            {authError && <Alert severity="error">{authError}</Alert>}
           </Box>
         </Box>
-
+        <Button onClick={handleGoogleSignIn} sx={{ width: "100%", m: 1, backgroundColor: "#E551A8" }} variant="contained">Google Sign In</Button>
       </Container>
     </ThemeProvider>
   );
