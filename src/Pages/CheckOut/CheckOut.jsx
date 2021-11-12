@@ -10,28 +10,28 @@ const CheckOut = () => {
     // const [order, setOrder] = useState({})
     const [product, setProduct] = useState([])
 
-    const {id} = useParams()
+    const { id } = useParams()
     useEffect(() => {
         axios.get(`http://localhost:5000/products/${id}`)
             .then(res => {
                 setProduct(res.data)
             })
     }, [id])
-    
 
-//     const handleBlur = (e) => {
-//         const field = e.target.name
-//         const value = e.target.value
-//         const newLoginData = { ...order }
-//         newLoginData[field] = value
-//         setOrder(newLoginData)
-//     }
-// console.log(order);
-//     const handlePayment = (e) => {
-//         console.log("payment");
+    console.log(product);
+    //     const handleBlur = (e) => {
+    //         const field = e.target.name
+    //         const value = e.target.value
+    //         const newLoginData = { ...order }
+    //         newLoginData[field] = value
+    //         setOrder(newLoginData)
+    //     }
+    // console.log(order);
+    //     const handlePayment = (e) => {
+    //         console.log("payment");
 
-//         e.preventDefault()
-//     }
+    //         e.preventDefault()
+    //     }
     return (
         <>
             <Navigation />
@@ -57,7 +57,7 @@ const CheckOut = () => {
                                         {product.desc}
                                     </Typography>
                                     <Typography sx={{ my: 2 }} variant="h4">${product.price}</Typography>
-                                    <Rating name="read-only" value={product.rating} readOnly />
+                                    <Rating name="read-only" value={3} readOnly />
                                 </CardContent>
 
                             </Card>

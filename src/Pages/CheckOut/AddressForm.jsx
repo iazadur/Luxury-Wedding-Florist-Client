@@ -8,13 +8,20 @@ import MuiButton from '../../StyleComponents/MuiButton';
 import { useForm } from "react-hook-form";
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import useAuth from '../../Hooks/useAuth';
 
 const AddressForm = ({ product }) => {
-
+const {user} = useAuth()
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
   const onSubmit = data => {
-    const order = { product, ShippingAddress: data }
+    const order = {...data }
+    order.date = new Date().toLocaleDateString()
+    order.productName = product.title
+    order.ammount = product.price
+    order.productID = product._id
+    order.productID = product.imgUrl
+    order.email = user.email
     axios.post('http://localhost:5000/order', order)
       .then(res => {
         reset()
