@@ -7,8 +7,9 @@ import {
 import Home from './Pages/Home/Home/Home';
 import Register from './Pages/Login/Register/Register';
 import Login from './Pages/Login/Login/Login';
-import Dashboard from './Pages/DashBoard/Dashboard';
+import Dashboard from './Pages/DashBoard/Dashboard/Dashboard';
 import AuthProvider from './Context/AuthProvider/AuthProvider';
+import PrivateRoute from './Pages/Login/PrivateRoute/PrivateRoute';
 
 function App() {
   return (
@@ -22,9 +23,9 @@ function App() {
             <Route path="/register">
               <Register />
             </Route>
-            <Route path="/dashboard">
+            <PrivateRoute path="/dashboard">
               <Dashboard />
-            </Route>
+            </PrivateRoute>
             <Route path="/">
               <Home />
 

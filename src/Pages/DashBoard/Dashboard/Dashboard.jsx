@@ -1,41 +1,29 @@
 import * as React from 'react';
+import useAuth from '../../../Hooks/useAuth';
+
+import { Switch, Route, useRouteMatch, Link } from "react-router-dom";
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import MuiDrawer from '@mui/material/Drawer';
-import Box from '@mui/material/Box';
+import { ListItem, ListItemIcon, ListItemText, CssBaseline, Box, Toolbar, IconButton, Divider, Typography, List, Container, Avatar, CardHeader } from '@mui/material';
 import MuiAppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import List from '@mui/material/List';
-import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import Badge from '@mui/material/Badge';
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-import Link from '@mui/material/Link';
-import MenuIcon from '@mui/icons-material/Menu';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import { mainListItems, secondaryListItems } from '../listItems';
-import Chart from '../Chart';
-import Deposits from '../Deposits';
-import Orders from '../Orders';
+import MuiDrawer from '@mui/material/Drawer';
+import { Menu, ChevronLeft, ShoppingCart, People, BarChart, Logout } from '@mui/icons-material';
+import DashboardIcon from '@mui/icons-material/Dashboard'
+import MyOrders from '../Order/MyOrders/MyOrders';
+import Pay from '../Pay/Pay';
+import AdminDashboard from '../AdminDashboard/AdminDashboard';
+import MakeAdmin from '../MakeAdmin/MakeAdmin';
+import AddProduct from '../Product/AddProduct/AddProduct';
+import ManageProducts from '../Product/ManageProducts/ManageProducts';
+import ManageOrders from '../Order/ManageOrders/ManageOrders';
+import AdminRoute from '../../Login/AdminRoute/AdminRoute';
+import PaymentIcon from '@mui/icons-material/Payment';
+import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
+import AddBoxIcon from '@mui/icons-material/AddBox';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import Review from '../Review/Review/Review';
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
-const drawerWidth = 240;
+const drawerWidth = 200;
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
@@ -83,17 +71,22 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 const mdTheme = createTheme();
 
-function DashboardContent() {
-  const [open, setOpen] = React.useState(true);
+const Dashboard = () => {
+  const { user, logout } = useAuth()
+  let { path, url } = useRouteMatch();
+  const [open, setOpen] = React.useState(false);
   const toggleDrawer = () => {
     setOpen(!open);
   };
+
+
+
 
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
-        <AppBar position="absolute" open={open}>
+        <AppBar position="absolute" open={open} style={{ background: 'linear-gradient(120deg, #FF8CAB ,#7366FF)' }}>
           <Toolbar
             sx={{
               pr: '24px', // keep right padding when drawer closed
@@ -109,7 +102,7 @@ function DashboardContent() {
                 ...(open && { display: 'none' }),
               }}
             >
-              <MenuIcon />
+              <Menu />
             </IconButton>
             <Typography
               component="h1"
@@ -120,11 +113,14 @@ function DashboardContent() {
             >
               Dashboard
             </Typography>
-            <IconButton color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
+
+            <CardHeader
+              avatar={
+                <Avatar src={user.photoURL}></Avatar>
+              }
+              title={user.displayName}
+              subheader={user.email}
+            />
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
@@ -137,13 +133,99 @@ function DashboardContent() {
             }}
           >
             <IconButton onClick={toggleDrawer}>
-              <ChevronLeftIcon />
+              <ChevronLeft />
             </IconButton>
           </Toolbar>
           <Divider />
-          <List>{mainListItems}</List>
+          <List>
+            <div>
+              <Link to={`${url}`}>
+                <ListItem button>
+                  <ListItemIcon>
+                    <DashboardIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Dashboard" />
+                </ListItem>
+              </Link>
+
+              <Link to={`${url}/myOrders`}>
+                <ListItem button>
+                  <ListItemIcon>
+                    <ShoppingCart />
+                  </ListItemIcon>
+                  <ListItemText primary="My Orders" />
+                </ListItem>
+              </Link>
+
+              <Link to={`${url}/addReview`}>
+                <ListItem button>
+                  <ListItemIcon>
+                    <People />
+                  </ListItemIcon>
+                  <ListItemText primary="Add Review" />
+                </ListItem>
+              </Link>
+              <Link to={`${url}/payment`}>
+                <ListItem button>
+                  <ListItemIcon>
+                    <PaymentIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Payment" />
+                </ListItem>
+              </Link>
+
+
+              <Link to={`${url}/manageAllOrders`}>
+                <ListItem button>
+                  <ListItemIcon>
+                    <BarChart />
+                  </ListItemIcon>
+                  <ListItemText primary="Manage All Orders" />
+                </ListItem>
+              </Link>
+
+
+
+              <Link to={`${url}/manageProducts`}>
+                <ListItem button>
+                  <ListItemIcon>
+                    <ProductionQuantityLimitsIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Manage Products" />
+                </ListItem>
+              </Link>
+
+              <Link to={`${url}/addProduct`}>
+                <ListItem button>
+                  <ListItemIcon>
+                    <AddBoxIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Add Product" />
+                </ListItem>
+              </Link>
+              <Link to={`${url}/makeAdmin`}>
+                <ListItem button>
+                  <ListItemIcon>
+                    <AddCircleIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Make Adimn" />
+                </ListItem>
+              </Link>
+            </div>
+
+          </List>
           <Divider />
-          <List>{secondaryListItems}</List>
+          <List>
+            <div>
+
+              <ListItem button onClick={logout}>
+                <ListItemIcon>
+                  <Logout />
+                </ListItemIcon>
+                <ListItemText primary="Logout" />
+              </ListItem>
+
+            </div></List>
         </Drawer>
         <Box
           component="main"
@@ -159,41 +241,37 @@ function DashboardContent() {
         >
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-            <Grid container spacing={3}>
-              {/* Chart */}
-              <Grid item xs={12} md={8} lg={9}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: 240,
-                  }}
-                >
-                  <Chart />
-                </Paper>
-              </Grid>
-              {/* Recent Deposits */}
-              <Grid item xs={12} md={4} lg={3}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: 240,
-                  }}
-                >
-                  <Deposits />
-                </Paper>
-              </Grid>
-              {/* Recent Orders */}
-              <Grid item xs={12}>
-                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                  <Orders />
-                </Paper>
-              </Grid>
-            </Grid>
-            <Copyright sx={{ pt: 4 }} />
+
+
+            <Switch>
+              {/* Normal User */}
+              <Route exact path={path}>
+                <AdminDashboard />
+              </Route>
+              <Route path={`${path}/myOrders`}>
+                <MyOrders />
+              </Route>
+              <Route path={`${path}/addReview`}>
+                <Review />
+              </Route>
+              <Route path={`${path}/payment`}>
+                <Pay />
+              </Route>
+
+              {/* Admin */}
+              <AdminRoute path={`${path}/makeAdmin`}>
+                <MakeAdmin />
+              </AdminRoute>
+              <AdminRoute path={`${path}/addProduct`}>
+                <AddProduct />
+              </AdminRoute>
+              <Route path={`${path}/manageAllOrders`}>
+                <ManageOrders />
+              </Route>
+              <Route path={`${path}/manageProducts`}>
+                <ManageProducts />
+              </Route>
+            </Switch>
           </Container>
         </Box>
       </Box>
@@ -201,6 +279,4 @@ function DashboardContent() {
   );
 }
 
-export default function Dashboard() {
-  return <DashboardContent />;
-}
+export default Dashboard

@@ -1,4 +1,4 @@
-import { Container, Grid } from '@mui/material';
+import { Container, Grid, Rating } from '@mui/material';
 import React from 'react';
 
 import Card from '@mui/material/Card';
@@ -10,8 +10,7 @@ import Typography from '@mui/material/Typography';
 
 import sunGlass from './../../../Asserts/sunglasses.jpg'
 
-const green = "#28C8A4"
-const red = "#FB552F"
+
 
 // green #28C8A4
 // red #FB552F
@@ -24,7 +23,7 @@ const Product = () => {
                 <Container sx={{ mt: 15 }}>
                     <Grid container spacing={2}>
                         {
-                            Array.from({ length: 3 }).map((a, idx) => (
+                            Array.from({ length: 6 }).map((a, idx) => (
                                 <Grid xs={12} md={4} item>
 
                                     <Card sx={{ maxWidth: 345 }}>
@@ -43,10 +42,11 @@ const Product = () => {
                                                 Lizards are a widespread group of squamate reptiles, with over 6,000
                                                 species, ranging across all continents except Antarctica
                                             </Typography>
+                                            <Rating name="half-rating-read" precision={3} readOnly />
                                         </CardContent>
-                                        <CardActions sx={{ justifyContent: "center", bgcolor: `${red}`, }}>
+                                        <CardActions sx={{ justifyContent: "center", background: 'linear-gradient(120deg, #FF8CAB ,#7366FF)', }}>
 
-                                            <Button size="small" sx={{ color: "#fff" }}>Learn More</Button>
+                                            <Button size="small" sx={{ color: "#fff" }}>Buy Now</Button>
                                         </CardActions>
                                     </Card>
 

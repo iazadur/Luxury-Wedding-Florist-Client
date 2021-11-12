@@ -1,7 +1,6 @@
 import { Container, Grid, Typography } from '@mui/material';
 import React from 'react';
 import bg1 from './../../../Asserts/1.jpg'
-import bg2 from './../../../Asserts/2.jpg'
 
 const appoinmentBg = {
     background: `url(${bg1})`,
