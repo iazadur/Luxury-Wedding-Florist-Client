@@ -20,8 +20,9 @@ const {user} = useAuth()
     order.productName = product.title
     order.ammount = product.price
     order.productID = product._id
-    order.productID = product.imgUrl
+    order.productUrl = product.imgUrl
     order.email = user.email
+    order.status = "pending"
     axios.post('http://localhost:5000/order', order)
       .then(res => {
         reset()

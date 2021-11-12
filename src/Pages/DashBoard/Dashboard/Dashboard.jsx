@@ -1,9 +1,10 @@
 import * as React from 'react';
 import useAuth from '../../../Hooks/useAuth';
 
-import { Switch, Route, useRouteMatch, Link } from "react-router-dom";
+import { Switch, Route, useRouteMatch, Link, NavLink } from "react-router-dom";
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import { ListItem, ListItemIcon, ListItemText, CssBaseline, Box, Toolbar, IconButton, Divider, Typography, List, Container, Avatar, CardHeader } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import MuiAppBar from '@mui/material/AppBar';
 import MuiDrawer from '@mui/material/Drawer';
 import { Menu, ChevronLeft, ShoppingCart, People, BarChart, Logout } from '@mui/icons-material';
@@ -69,6 +70,23 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
+const useStyles = makeStyles({
+  logo: {
+    color: "#fff",
+    fontSize: "16px",
+    fontFamily: "Roboto",
+    fontWeight: "600",
+
+  },
+  logoSpan: {
+    fontSize: "16px",
+    color: "#F1C40F"
+  },
+  textD: {
+    textDecoration: "none !important",
+    color: "rgba(0, 0, 0, 0.87) !important"
+  }
+})
 const mdTheme = createTheme();
 
 const Dashboard = () => {
@@ -79,6 +97,7 @@ const Dashboard = () => {
     setOpen(!open);
   };
 
+  const { logo, logoSpan } = useStyles()
 
 
 
@@ -104,6 +123,11 @@ const Dashboard = () => {
             >
               <Menu />
             </IconButton>
+            <NavLink to="/">
+              <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
+                <Typography className={logo} variant="h6body1">TRE<span className={logoSpan}>ND</span></Typography>
+              </Box>
+            </NavLink>
             <Typography
               component="h1"
               variant="h6"
