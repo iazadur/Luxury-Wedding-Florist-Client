@@ -1,4 +1,4 @@
-import { Grid, Paper } from '@mui/material';
+import { Avatar, Grid, Paper } from '@mui/material';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
@@ -72,7 +72,7 @@ const ManageProducts = () => {
                                         <TableRow key={row._id}>
                                             <TableCell>{row.date}</TableCell>
                                             <TableCell>{row.title}</TableCell>
-                                            <TableCell>{row.desc.slice(0, 20)}</TableCell>
+                                            <TableCell><Avatar src={row.imgUrl}></Avatar></TableCell>
 
                                             <TableCell align="right">{`$${row.price}`}</TableCell>
                                             <TableCell>
@@ -97,3 +97,4 @@ const ManageProducts = () => {
 };
 
 export default ManageProducts;
+

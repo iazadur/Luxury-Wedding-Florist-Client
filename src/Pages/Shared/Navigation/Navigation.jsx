@@ -85,7 +85,7 @@ export default function Navigation() {
                                 </NavLink> :
                                     <Tooltip title="Account settings">
                                         <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }}>
-                                            <Avatar src={user.photoURL} sx={{ width: 32, height: 32 }}>M</Avatar>
+                                            <Avatar src={user?.photoURL} sx={{ width: 32, height: 32 }} />
                                         </IconButton>
                                     </Tooltip>
                             }

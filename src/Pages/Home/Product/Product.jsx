@@ -7,47 +7,50 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-
-import sunGlass from './../../../Asserts/sunglasses.jpg'
+import { NavLink } from 'react-router-dom';
 
 
 
 // green #28C8A4
 // red #FB552F
 // yellow #FFB42E
-const Product = () => {
+const Product = ({ products }) => {
+
+    
     return (
         <>
             <div>
 
-                <Container sx={{ mt: 15 }}>
+                <Container sx={{ my: 15 }}>
                     <Grid container spacing={2}>
                         {
-                            Array.from({ length: 6 }).map((a, idx) => (
-                                <Grid xs={12} md={4} item>
+                           products.slice(0,6).map((p) => (
+                                <Grid key={p._id} xs={12} md={4} item>
 
                                     <Card sx={{ maxWidth: 345 }}>
                                         <CardMedia
                                             component="img"
                                             width="100%"
-                                            image={sunGlass}
+                                            image={p.imgUrl}
                                             alt="green iguana"
 
                                         />
                                         <CardContent sx={{ bgcolor: "#ECF0F1", p: 3 }}>
-                                            <Typography gutterBottom variant="h5" component="div">
-                                                Lizard
+                                            <Typography gutterBottom variant="h5" sx={{minHeight:"70px"}} component="div">
+                                                {p.title}
                                             </Typography>
                                             <Typography variant="body2" color="text.secondary">
-                                                Lizards are a widespread group of squamate reptiles, with over 6,000
-                                                species, ranging across all continents except Antarctica
+                                                {p.desc}
                                             </Typography>
-                                            <Rating name="half-rating-read" precision={3} readOnly />
+                                            <Typography sx={{ my: 2 }} variant="h4">${p.price}</Typography>
+                                            <Rating name="read-only" value={p.rating} readOnly />
                                         </CardContent>
-                                        <CardActions sx={{ justifyContent: "center", background: 'linear-gradient(120deg, #FF8CAB ,#7366FF)', }}>
+                                        <NavLink to={`/checkout/${p._id}`}>
+                                            <CardActions sx={{ justifyContent: "center", background: 'linear-gradient(120deg, #FF8CAB ,#7366FF)', }}>
 
-                                            <Button size="small" sx={{ color: "#fff" }}>Buy Now</Button>
-                                        </CardActions>
+                                                <Button size="small" sx={{ color: "#fff", textDecoration: "none" }}>Buy Now</Button>
+                                            </CardActions>
+                                        </NavLink>
                                     </Card>
 
 
@@ -62,3 +65,8 @@ const Product = () => {
 };
 
 export default Product;
+
+// https://i.ibb.co/ZVRg61k/4.jpg
+// https://i.ibb.co/FHGbLh5/5.jpg
+// https://i.ibb.co/8jwqfJJ/6.jpg
+// https://i.ibb.co/ggFrDbS/7.jpg

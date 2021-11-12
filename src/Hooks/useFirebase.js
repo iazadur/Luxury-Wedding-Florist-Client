@@ -11,6 +11,7 @@ initializeFirebaseApp()
 
 const useFirebase = () => {
     const [user, setUser] = useState({})
+    const [error, setError] = useState('')
     const [isLoading, setIsLoading] = useState(true)
     const [authError, setAuthError] = useState('')
     const [admin, setAdmin] = useState(false)
@@ -41,14 +42,14 @@ const useFirebase = () => {
 
                 });
                 history.push('/')
-               
+
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',
                     title: 'Successfully Created an Account!',
                     showConfirmButton: false,
                     timer: 1500
-                  })
+                })
             })
             .catch((error) => {
                 setAuthError(error.message)
@@ -135,14 +136,14 @@ const useFirebase = () => {
             axios.post('http://localhost:5000/users', user)
                 .then((res) => {
                     if (res.data.insertedId) {
-                       
+
                         Swal.fire({
                             position: 'top-end',
                             icon: 'success',
                             title: 'Successfully Created an Account!',
                             showConfirmButton: false,
                             timer: 1500
-                          })
+                        })
                     }
                 })
         }
@@ -156,7 +157,7 @@ const useFirebase = () => {
                             title: 'Successfully Created an Account!',
                             showConfirmButton: false,
                             timer: 1500
-                          })
+                        })
                     }
                 })
         }
@@ -174,7 +175,9 @@ const useFirebase = () => {
         logout,
         signInWithGoogle,
         isLoading,
-        authError
+        authError,
+        error,
+        setError
     }
 
 }
