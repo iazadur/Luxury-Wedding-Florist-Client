@@ -103,7 +103,7 @@ const OrderUpdate = () => {
                                         </Typography>
                                         <Typography gutterBottom>{order.firstName + " " + order.lastName}</Typography>
                                         <Typography gutterBottom>{order.city + "-" + order.zip}</Typography>
-                                        <Typography gutterBottom>{order.state + "-" + order.country}</Typography>
+                                        <Typography gutterBottom>{order.state + " " + order.country}</Typography>
                                     </Grid>
                                     <Grid item container direction="column" xs={12} sm={6}>
                                         <Typography variant="h6" gutterBottom sx={{ mt: 2, color: "green" }}>

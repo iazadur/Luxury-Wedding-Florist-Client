@@ -12,6 +12,7 @@ import AuthProvider from './Context/AuthProvider/AuthProvider';
 import PrivateRoute from './Pages/Login/PrivateRoute/PrivateRoute';
 import CheckOut from './Pages/CheckOut/CheckOut';
 import OrderUpdate from './Pages/DashBoard/Order/OrderUpdate/OrderUpdate';
+import UpdateProduct from './Pages/DashBoard/Product/UpdateProduct/UpdateProduct';
 
 function App() {
   return (
@@ -30,6 +31,9 @@ function App() {
             </Route>
             <Route path="/orderUpdate/:id">
               <OrderUpdate />
+            </Route>
+            <Route path="/updateProduct/:id">
+              <UpdateProduct />
             </Route>
             <PrivateRoute path="/dashboard">
               <Dashboard />

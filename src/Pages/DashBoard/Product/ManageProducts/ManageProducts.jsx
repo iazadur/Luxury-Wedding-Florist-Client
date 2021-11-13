@@ -76,7 +76,7 @@ const ManageProducts = () => {
 
                                             <TableCell align="right">{`$${row.price}`}</TableCell>
                                             <TableCell>
-                                                <NavLink to="/">
+                                                <NavLink to={`/updateProduct/${row._id}`}>
                                                     <EditIcon sx={{ color: "blue" }} />
                                                 </NavLink>
                                                 <DeleteIcon sx={{ color: "red",cursor:"pointer" }} onClick={() => handleDelete(row._id)} />
