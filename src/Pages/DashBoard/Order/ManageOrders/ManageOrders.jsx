@@ -85,7 +85,7 @@ const ManageOrders = () => {
 
                                             <TableCell align="right">{`$${row.ammount}`}</TableCell>
                                             <TableCell>
-                                                <NavLink to="/">
+                                                <NavLink to={`/orderUpdate/${row._id}`}>
                                                     <Edit sx={{ color: "blue" }} />
                                                 </NavLink>
                                                 <Delete sx={{ color: "red", cursor: "pointer" }} onClick={() => handleDelete(row._id)} />

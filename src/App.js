@@ -11,6 +11,7 @@ import Dashboard from './Pages/DashBoard/Dashboard/Dashboard';
 import AuthProvider from './Context/AuthProvider/AuthProvider';
 import PrivateRoute from './Pages/Login/PrivateRoute/PrivateRoute';
 import CheckOut from './Pages/CheckOut/CheckOut';
+import OrderUpdate from './Pages/DashBoard/Order/OrderUpdate/OrderUpdate';
 
 function App() {
   return (
@@ -26,6 +27,9 @@ function App() {
             </Route>
             <Route path="/checkout/:id">
               <CheckOut />
+            </Route>
+            <Route path="/orderUpdate/:id">
+              <OrderUpdate />
             </Route>
             <PrivateRoute path="/dashboard">
               <Dashboard />
