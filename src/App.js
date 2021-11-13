@@ -15,6 +15,8 @@ import CheckOut from './Pages/CheckOut/CheckOut';
 import OrderUpdate from './Pages/DashBoard/Order/OrderUpdate/OrderUpdate';
 import UpdateProduct from './Pages/DashBoard/Product/UpdateProduct/UpdateProduct';
 import PublicRoute from './Pages/Login/PublicRoute/PublicRoute';
+import Explore from './Pages/Explore/Explore';
+import NotFound from './Pages/NotFound/NotFound';
 
 function App() {
   return (
@@ -22,7 +24,7 @@ function App() {
       <AuthProvider>
         <Router>
           <Switch>
-            <PublicRoute path="/login">
+            <PublicRoute exact path="/login">
               <Login />
             </PublicRoute>
             <PublicRoute path="/register">
@@ -40,9 +42,14 @@ function App() {
             <PrivateRoute path="/dashboard">
               <Dashboard />
             </PrivateRoute>
-            <Route path="/">
+            <Route path="/explore">
+              <Explore />
+            </Route>
+            <Route exact path="/">
               <Home />
-
+            </Route>
+            <Route path="*">
+              <NotFound />
             </Route>
           </Switch>
         </Router>

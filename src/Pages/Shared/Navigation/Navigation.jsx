@@ -26,9 +26,9 @@ const useStyles = makeStyles({
         fontSize: "16px",
         color: "#F1C40F"
     },
-    textD:{
-        textDecoration:"none !important",
-        color:"rgba(0, 0, 0, 0.87) !important"
+    textD: {
+        textDecoration: "none !important",
+        color: "rgba(0, 0, 0, 0.87) !important"
     }
 })
 
@@ -46,7 +46,7 @@ export default function Navigation() {
         setAnchorEl(null);
     };
 
-    const { logo, logoSpan,textD } = useStyles()
+    const { logo, logoSpan, textD } = useStyles()
     return (
 
         <Box sx={{ flexGrow: 1 }}>
@@ -54,28 +54,26 @@ export default function Navigation() {
             <AppBar position="fixed" sx={{ bgcolor: "#000" }}>
                 <Container>
                     <Toolbar sx={{ display: 'flex', justifyContent: "space-between" }}>
-
+                    <NavLink className='textDecoration' to='/'>
                         <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
-                            {/* <IconButton
-                                size="large"
-                                edge="start"
-                                color="inherit"
-                                aria-label="menu"
-                                sx={{ mr: 2 }}
-                            >
-                                <MenuIcon />
-
-                            </IconButton> */}
+                           
                             <Typography className={logo} variant="h6body1">TRE<span className={logoSpan}>ND</span></Typography>
                         </Box>
-                        <Box xs={{ display: { xs: "none", md: "block" } }}>
-                            <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
-                                <Typography sx={{ minWidth: 100 }}>Explore</Typography>
+                        </NavLink>
+                        <NavLink className='textDecoration' to='/explore'>
+                            <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center',color:'white' }}>
+                                <Typography
+                                    component="h1"
+                                    variant="h6"
+                                    color="inherit"
+                                    noWrap
+                                    sx={{ flexGrow: 1 }}
+                                >
+                                    Explore
+                                </Typography>
                             </Box>
-                        </Box>
-                        {/* <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            <Typography sx={{ minWidth: 100 }}>Contact</Typography>
-        </Typography> */}
+                        </NavLink>
+                        
 
 
                         <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
@@ -127,7 +125,7 @@ export default function Navigation() {
                         >
                             <NavLink to="/dashboard" className={textD} >
                                 <MenuItem >
-                                    <DashboardIcon sx={{color:"gray", mr:1}} /> Dashboard
+                                    <DashboardIcon sx={{ color: "gray", mr: 1 }} /> Dashboard
                                 </MenuItem>
                             </NavLink>
                             <Divider />

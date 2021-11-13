@@ -24,7 +24,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Review from '../Review/Review/Review';
 
 
-const drawerWidth = 200;
+const drawerWidth = 220;
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
@@ -163,14 +163,14 @@ const Dashboard = () => {
           <Divider />
           <List>
             <div>
-              <NavLink className="textDecoration colors" to={`${url}`}>
+              {admin && <NavLink className="textDecoration colors" to={`${url}`}>
                 <ListItem button>
                   <ListItemIcon>
                     <DashboardIcon />
                   </ListItemIcon>
                   <ListItemText primary="Dashboard" />
                 </ListItem>
-              </NavLink>
+              </NavLink>}
 
               {user && !admin && <NavLink className="textDecoration colors" to={`${url}/myOrders`}>
                 <ListItem button>
@@ -269,9 +269,9 @@ const Dashboard = () => {
 
             <Switch>
               {/* Normal User */}
-              <Route exact path={path}>
+              <AdminRoute exact path={path}>
                 <AdminDashboard />
-              </Route>
+              </AdminRoute>
               <Route path={`${path}/myOrders`}>
                 <MyOrders />
               </Route>

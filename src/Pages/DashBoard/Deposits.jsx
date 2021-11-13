@@ -7,15 +7,20 @@ function preventDefault(event) {
   event.preventDefault();
 }
 
-export default function Deposits() {
+export default function Deposits({orders}) {
+  
+
+const completeOrders = orders?.filter(o=>o.status === 'Delivered')
+const totalAmmount = completeOrders?.map(c=>parseFloat(c.ammount)).reduce((a, b) => a + b, 0)
   return (
     <React.Fragment>
-      <Title>Recent Deposits</Title>
+      
+      <Title>All Complete Orders</Title> {/* //Recent Deposits */}
       <Typography component="p" variant="h4">
-        $3,024.00
+        ${totalAmmount}
       </Typography>
-      <Typography color="text.secondary" sx={{ flex: 1 }}>
-        on 15 March, 2019
+      <Typography color="text.secondary" sx={{ flex: 1,mt:3 }}>
+        {new Date().toLocaleString()}
       </Typography>
       <div>
         <Link color="primary" href="#" onClick={preventDefault}>

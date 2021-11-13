@@ -9,8 +9,10 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { NavLink } from 'react-router-dom';
 import useAuth from '../../../Hooks/useAuth';
-import { useHistory } from 'react-router-dom';
-import { Button, Container, Grid, TextField, Typography, CircularProgress, Alert } from '@mui/material';
+import { useHistory, useLocation } from 'react-router-dom';
+import { Button, Container, Grid, TextField, Typography } from '@mui/material';
+import Swal from 'sweetalert2';
+import MuiButton from '../../../StyleComponents/MuiButton';
 
 
 
@@ -18,8 +20,9 @@ const theme = createTheme();
 
 export default function Register() {
 
-    const { registerUser, isLoading, user, authError } = useAuth()
+    const { registerUser, signInWithGoogle, user, authError } = useAuth()
     const history = useHistory()
+    const location = useLocation();
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -37,6 +40,30 @@ export default function Register() {
 
 
     };
+    const handleGoogleSignIn = () => {
+        signInWithGoogle(location, history)
+    }
+
+    if (user?.email) {
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'User Created Successfully!',
+            showConfirmButton: false,
+            timer: 5000
+        });
+    }
+
+    if (authError) {
+        Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: `${authError}`,
+            showConfirmButton: false,
+            timer: 4000
+        });
+    }
+
 
     return (
         <ThemeProvider theme={theme}>
@@ -136,10 +163,11 @@ export default function Register() {
 
                             </Grid>
                         </Grid>
-                        {isLoading && <CircularProgress disableShrink />}
-                        {user?.email && <Alert severity="success">User Created Successfully!</Alert>}
-                        {authError && <Alert severity="error">{authError}</Alert>}
+
+
                     </Box>
+
+                    <MuiButton onClick={handleGoogleSignIn} sx={{ width: "100%", mt: 1, py: 1 }} variant="contained">Google Sign In</MuiButton>
                 </Box>
             </Container>
         </ThemeProvider>

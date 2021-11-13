@@ -1,4 +1,5 @@
 import { Grid, Paper } from '@mui/material';
+import axios from 'axios';
 import React from 'react';
 
 import Chart from '../Chart';
@@ -6,6 +7,13 @@ import Deposits from '../Deposits';
 import Orders from '../Orders';
 
 const AdminDashboard = () => {
+    const [orders, setOrders] = React.useState([])
+    React.useEffect(() => {
+        axios.get('http://localhost:5000/orders')
+            .then(res => {
+                setOrders(res.data)
+            })
+    }, [])
     return (
         <>
             <Grid container spacing={3}>
@@ -32,13 +40,13 @@ const AdminDashboard = () => {
                             height: 240,
                         }}
                     >
-                        <Deposits />
+                        <Deposits orders={orders} />
                     </Paper>
                 </Grid>
                 {/* Recent Orders */}
                 <Grid item xs={12}>
                     <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                        <Orders />
+                        <Orders orders={orders} />
                     </Paper>
                 </Grid>
             </Grid>

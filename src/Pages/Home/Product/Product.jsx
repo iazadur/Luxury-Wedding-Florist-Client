@@ -2,6 +2,14 @@ import { Container, Grid, Rating, Box, Card, Typography, Button, CardMedia, Card
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import Title from '../../Shared/Title/Title';
+import { css } from "@emotion/react";
+import DotLoader from "react-spinners/DotLoader";
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+`;
+
 
 
 
@@ -13,7 +21,9 @@ const Product = ({ products }) => {
 
     return (
         <>
-            <div>
+        {products.length === 0 ? (<Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignContent: "center", height: "100vh" }} >
+                <DotLoader color="#E317E3" css={override} size={50} />
+            </Box>):(<div>
                 <Title>Latest Products </Title>
 
                 <Box sx={{ height: "2px", bgcolor: "#FF8CAB", width: "100px", m: "0 auto" }}></Box>
@@ -56,7 +66,8 @@ const Product = ({ products }) => {
                     </Grid>
                 </Container>
 
-            </div>
+            </div>)}
+            
         </>
     );
 };

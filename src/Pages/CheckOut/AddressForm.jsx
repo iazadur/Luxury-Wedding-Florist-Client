@@ -5,17 +5,19 @@ import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import MuiButton from '../../StyleComponents/MuiButton';
+import {useHistory} from 'react-router-dom'
 import { useForm } from "react-hook-form";
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import useAuth from '../../Hooks/useAuth';
 
 const AddressForm = ({ product }) => {
-const {user} = useAuth()
+  const history = useHistory()
+  const { user } = useAuth()
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
   const onSubmit = data => {
-    const order = {...data }
+    const order = { ...data }
     order.date = new Date().toLocaleDateString()
     order.productName = product.title
     order.ammount = product.price
@@ -32,6 +34,7 @@ const {user} = useAuth()
           showConfirmButton: false,
           timer: 1500
         })
+        history.replace("/explore")
 
       })
     console.log(order);
