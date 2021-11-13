@@ -7,14 +7,14 @@ import Typography from '@mui/material/Typography';
 import { Container, Rating } from '@mui/material';
 
 
-
 const ClientSpeak = ({ name, img, feedback, rating }) => {
 
 
 
     return (
         <>
-            <Container sx={{ justifyContent: "center", display: 'flex' }}>
+        
+            <Container sx={{ justifyContent: "center", display: 'flex',my:10 }}>
                 <Card sx={{ maxWidth: 345, display: 'flex', flexDirection: "column", alignItems: "center" }}>
                     <Avatar src={img} />
                     <Typography variant={"subtitle1"}>{name}</Typography>

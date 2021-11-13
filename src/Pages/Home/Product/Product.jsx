@@ -1,13 +1,7 @@
-import { Container, Grid, Rating } from '@mui/material';
+import { Container, Grid, Rating, Box, Card, Typography, Button, CardMedia, CardContent, CardActions } from '@mui/material';
 import React from 'react';
-
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import { NavLink } from 'react-router-dom';
+import Title from '../../Shared/Title/Title';
 
 
 
@@ -16,15 +10,18 @@ import { NavLink } from 'react-router-dom';
 // yellow #FFB42E
 const Product = ({ products }) => {
 
-    
+
     return (
         <>
             <div>
+                <Title>Latest Products </Title>
 
+                <Box sx={{ height: "2px", bgcolor: "#FF8CAB", width: "100px", m: "0 auto" }}></Box>
                 <Container sx={{ my: 15 }}>
+
                     <Grid container spacing={2}>
                         {
-                           products.slice(0,6).map((p) => (
+                            products.slice(0, 6).map((p) => (
                                 <Grid key={p._id} xs={12} md={4} item>
 
                                     <Card sx={{ maxWidth: 345 }}>
@@ -36,7 +33,7 @@ const Product = ({ products }) => {
 
                                         />
                                         <CardContent sx={{ bgcolor: "#ECF0F1", p: 3 }}>
-                                            <Typography gutterBottom variant="h5" sx={{minHeight:"70px"}} component="div">
+                                            <Typography gutterBottom variant="h5" sx={{ minHeight: "70px" }} component="div">
                                                 {p.title}
                                             </Typography>
                                             <Typography variant="body2" color="text.secondary">
@@ -45,10 +42,10 @@ const Product = ({ products }) => {
                                             <Typography sx={{ my: 2 }} variant="h4">${p.price}</Typography>
                                             <Rating name="read-only" value={p.rating} readOnly />
                                         </CardContent>
-                                        <NavLink to={`/checkout/${p._id}`}>
+                                        <NavLink to={`/checkout/${p._id}`} className="textDecoration">
                                             <CardActions sx={{ justifyContent: "center", background: 'linear-gradient(120deg, #FF8CAB ,#7366FF)', }}>
 
-                                                <Button size="small" sx={{ color: "#fff", textDecoration: "none" }}>Buy Now</Button>
+                                                <Button size="small" sx={{ color: "#fff" }} >Buy Now</Button>
                                             </CardActions>
                                         </NavLink>
                                     </Card>

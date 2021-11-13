@@ -20,10 +20,18 @@ const MakeAdmin = () => {
         axios.put('http://localhost:5000/users/admin', user)
             .then((res) => {
                 if (res.data.modifiedCount) {
-                    Swal({
+                    Swal.fire({
                         title: "Good job!",
                         text: "Successfully Make Admin!",
                         icon: "success",
+                        buttons: false,
+                        timer: 1500,
+                    });
+                }else{
+                    Swal.fire({
+                        title: "Oh No!",
+                        text: "Already Have Make An Admin!",
+                        icon: "info",
                         buttons: false,
                         timer: 1500,
                     });
@@ -39,7 +47,7 @@ const MakeAdmin = () => {
             </Typography>
             <form onSubmit={handleAdminSubmit}>
                 <TextField sx={{ width: 1, m: 1 }} id="standard-basic" label="Email" variant="standard" type="email" name="email" onBlur={handleOnBlur}></TextField>
-                <MuiButton style={{margin:"10px auto"}}>Submit</MuiButton>
+                <MuiButton type="submit" style={{margin:"10px auto"}}>Submit</MuiButton>
 
             </form>
 

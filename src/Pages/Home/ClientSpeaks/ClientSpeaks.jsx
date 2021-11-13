@@ -8,7 +8,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.min.css";
 // import PropLoader from '../PropLoader/PropLoader';
 import ClientSpeak from './ClientSpeak';
+import Title from '../../Shared/Title/Title';
 SwiperCore.use([Navigation, Pagination, Autoplay]);
+
+
 
 
 const ClientSpeaks = () => {
@@ -17,14 +20,16 @@ const ClientSpeaks = () => {
 
     useEffect(() => {
         axios.get('http://localhost:5000/review')
-        .then(res => {
-            setFeedback(res.data)
-        })
+            .then(res => {
+                setFeedback(res.data)
+            })
     }, [])
     return (
         <>
-            <Box sx={{mt:10}}>
-
+            <Box sx={{ my: 10 }}>
+                <Title>Clients Speaks </Title>
+                
+                <Box sx={{height:"2px",bgcolor:"#FF8CAB",width:"100px",m:"0 auto"}}></Box>
                 {feedBack.length === 0 ?
                     <div className="">
                         {"loading"}
@@ -42,9 +47,9 @@ const ClientSpeaks = () => {
                         spaceBetween={20}
                     >
                         {feedBack.map(item => (
-                            <SwiperSlide sx={{my:3}} key={item._id}>
+                            <SwiperSlide key={item._id}>
 
-                                <ClientSpeak  {...item} />
+                                <ClientSpeak   {...item} />
 
                             </SwiperSlide>
                         ))}

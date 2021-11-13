@@ -5,6 +5,7 @@ import Navigation from '../../Shared/Navigation/Navigation';
 import ClientSpeaks from '../ClientSpeaks/ClientSpeaks';
 import Product from '../Product/Product';
 import SaleBannerHolder from '../SaleBannerHolder/SaleBannerHolder';
+import ShopFeatures from '../ShopFeatures/ShopFeatures';
 
 const Home = () => {
     const [products, setProducts] = useState([])
@@ -17,6 +18,7 @@ const Home = () => {
     return (
         <>
             <Navigation />
+            <ShopFeatures />
             <SaleBannerHolder />
             <Product products={products} />
             <ClientSpeaks />

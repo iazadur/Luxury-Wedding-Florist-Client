@@ -1,7 +1,7 @@
 import * as React from 'react';
 import useAuth from '../../../Hooks/useAuth';
 
-import { Switch, Route, useRouteMatch, Link, NavLink } from "react-router-dom";
+import { Switch, Route, useRouteMatch, NavLink } from "react-router-dom";
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import { ListItem, ListItemIcon, ListItemText, CssBaseline, Box, Toolbar, IconButton, Divider, Typography, List, Container, Avatar, CardHeader } from '@mui/material';
 import { makeStyles } from '@mui/styles';
@@ -123,7 +123,7 @@ const Dashboard = () => {
             >
               <Menu />
             </IconButton>
-            <NavLink to="/">
+            <NavLink to="/" className="textDecoration">
               <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
                 <Typography className={logo} variant="h6body1">TRE<span className={logoSpan}>ND</span></Typography>
               </Box>
@@ -163,78 +163,78 @@ const Dashboard = () => {
           <Divider />
           <List>
             <div>
-              <Link to={`${url}`}>
+              <NavLink className="textDecoration colors" to={`${url}`}>
                 <ListItem button>
                   <ListItemIcon>
                     <DashboardIcon />
                   </ListItemIcon>
                   <ListItemText primary="Dashboard" />
                 </ListItem>
-              </Link>
+              </NavLink>
 
-              {user && !admin && <Link to={`${url}/myOrders`}>
+              {user && !admin && <NavLink className="textDecoration colors" to={`${url}/myOrders`}>
                 <ListItem button>
                   <ListItemIcon>
                     <ShoppingCart />
                   </ListItemIcon>
                   <ListItemText primary="My Orders" />
                 </ListItem>
-              </Link>}
+              </NavLink>}
 
-              {user && !admin && <Link to={`${url}/addReview`}>
+              {user && !admin && <NavLink className="textDecoration colors" to={`${url}/addReview`}>
                 <ListItem button>
                   <ListItemIcon>
                     <People />
                   </ListItemIcon>
                   <ListItemText primary="Add Review" />
                 </ListItem>
-              </Link>}
-              {user && !admin && <Link to={`${url}/payment`}>
+              </NavLink>}
+              {user && !admin && <NavLink className="textDecoration colors" to={`${url}/payment`}>
                 <ListItem button>
                   <ListItemIcon>
                     <PaymentIcon />
                   </ListItemIcon>
                   <ListItemText primary="Payment" />
                 </ListItem>
-              </Link>}
+              </NavLink>}
 
               {/* Admin section */}
-              {admin && <Link to={`${url}/manageAllOrders`}>
+              {admin && <NavLink className="textDecoration colors" to={`${url}/manageAllOrders`}>
                 <ListItem button>
                   <ListItemIcon>
                     <BarChart />
                   </ListItemIcon>
                   <ListItemText primary="Manage All Orders" />
                 </ListItem>
-              </Link>
+              </NavLink>
               }
 
 
-              {admin && <Link to={`${url}/manageProducts`}>
+              {admin && <NavLink className="textDecoration colors" to={`${url}/manageProducts`}>
                 <ListItem button>
                   <ListItemIcon>
                     <ProductionQuantityLimitsIcon />
                   </ListItemIcon>
                   <ListItemText primary="Manage Products" />
                 </ListItem>
-              </Link>}
+              </NavLink>}
 
-              {admin && <Link to={`${url}/addProduct`}>
+              {admin && <NavLink className="textDecoration colors" to={`${url}/addProduct`}>
                 <ListItem button>
                   <ListItemIcon>
                     <AddBoxIcon />
                   </ListItemIcon>
                   <ListItemText primary="Add Product" />
                 </ListItem>
-              </Link>}
-              {admin && <Link to={`${url}/makeAdmin`}>
+              </NavLink>}
+              {admin && <NavLink className="textDecoration colors" to={`${url}/makeAdmin`}>
                 <ListItem button>
                   <ListItemIcon>
                     <AddCircleIcon />
                   </ListItemIcon>
                   <ListItemText primary="Make Adimn" />
                 </ListItem>
-              </Link>}
+              </NavLink>}
             </div>
 
           </List>
