@@ -15,26 +15,26 @@ const useStyles = makeStyles({
     root: {
         backgroundColor: '#2C3E50',
         color: "#9AA7AF",
-        fontSize: "12px",
+        fontSize: "12px !important",
         marginTop: 100,
-        textAlign: "left",
+        textAlign: "left !important",
         padding: "30px 0"
     },
     logo: {
         color: "#fff",
-        fontSize: "36px",
+        fontSize: "36px !important",
         fontFamily: "Roboto",
         fontWeight: "600",
 
     },
     logoSpan: {
-        fontSize: "36px",
+        fontSize: "36px !important",
         color: "#F1C40F"
     },
     list: {
         display: "flex",
         flexDirection: "column",
-        alignItems: "flex-start",
+        alignItems: "flex-start !important",
         padding: 0
     },
     IconStyle: {
@@ -59,7 +59,7 @@ const Footer = () => {
                 <Container>
                     <Grid container spacing={2}>
                         <Grid item xs={12} md={3}>
-                            <Typography className={logo} variant="h1">TRE<span className={logoSpan}>ND</span></Typography>
+                            <Typography className={logo} variant="h3">TRE<span className={logoSpan}>ND</span></Typography>
                             <Typography variant="body2" sx={{ my: 3 }}>Powerful WP Theme, built to suit everybody and any type of website</Typography>
                             <Typography variant="body2">TREND Theme has everything you need to build an awesome website for you or your company and the possiblities are just endless</Typography>
                         </Grid>
@@ -94,7 +94,7 @@ const Footer = () => {
                                     <ListItemText primary="No 123, Rode Island, USA" />
 
                                 </ListItem>
-                                <ListItem  sx={{ p: 0 }}>
+                                <ListItem sx={{ p: 0 }}>
                                     <ListItemIcon>
                                         <CallIcon sx={{ color: "#9AA7AF" }} />
                                     </ListItemIcon>
@@ -108,25 +108,34 @@ const Footer = () => {
                                     <ListItemText primary="Email: iamazadur@gmail.com" />
                                 </ListItem>
                                 <ListItem sx={{ p: 0 }}>
-                                    <ListItemIcon className={IconListStyle}>
-                                        <FacebookIcon className={IconStyle} />
-                                    </ListItemIcon>
-                                    <ListItemIcon>
-                                        <InstagramIcon className={IconStyle} />
-                                    </ListItemIcon>
-                                    <ListItemIcon>
-                                        <LinkedInIcon className={IconStyle} />
-                                    </ListItemIcon>
+                                    <a href="https://www.facebook.com/iazadur" target="_blank" rel="noopener noreferrer">
+                                        <ListItemIcon className={IconListStyle}>
+                                            <FacebookIcon className={IconStyle} />
+                                        </ListItemIcon>
+                                    </a>
+                                    <a href="https://www.instagram.com/iazadur" target="_blank" rel="noopener noreferrer">
+                                        <ListItemIcon>
+                                            <InstagramIcon className={IconStyle} />
+                                        </ListItemIcon>
+                                    </a>
+                                    <a href="https://www.linkedin.com/in/iamazadur" target="_blank" rel="noopener noreferrer">
+                                        <ListItemIcon>
+                                            <LinkedInIcon className={IconStyle} />
+                                        </ListItemIcon>
+                                    </a>
+
+                                    <a href="https://github.com/iazadur" target="_blank" rel="noopener noreferrer">
                                     <ListItemIcon>
                                         <GitHubIcon className={IconStyle} />
                                     </ListItemIcon>
+                                </a>
 
-                                </ListItem>
-                            </Box>
-                        </Grid>
+                            </ListItem>
+                        </Box>
                     </Grid>
-                </Container>
-            </div>
+                </Grid>
+            </Container>
+        </div>
         </>
     );
 };

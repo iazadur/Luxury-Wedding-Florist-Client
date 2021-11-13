@@ -9,7 +9,7 @@ const ShopFeatures = () => {
 
     return (
         <>
-            <Box style={{ backgroundColor: "#393939", color: "#FFF", marginTop: "100px" }}>
+            <Box style={{ backgroundColor: "#393939", color: "#FFF"}} my={12}>
                 <Container>
                     <Grid container columnSpacing={3}>
                         <Grid xs={12} sm={4} item>
