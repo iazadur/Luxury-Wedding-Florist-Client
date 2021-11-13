@@ -10,6 +10,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import Fade from 'react-reveal/Fade';
 
 const useStyles = makeStyles({
     root: {
@@ -59,11 +60,14 @@ const Footer = () => {
                 <Container>
                     <Grid container spacing={2}>
                         <Grid item xs={12} md={3}>
+                            <Fade left>
                             <Typography className={logo} variant="h3">TRE<span className={logoSpan}>ND</span></Typography>
                             <Typography variant="body2" sx={{ my: 3 }}>Powerful WP Theme, built to suit everybody and any type of website</Typography>
                             <Typography variant="body2">TREND Theme has everything you need to build an awesome website for you or your company and the possiblities are just endless</Typography>
+                            </Fade>
                         </Grid>
                         <Grid item xs={12} md={3}>
+                        <Fade bottom>
                             <FooterTitle text={"Menu"} />
                             <ListItem className={list}>
                                 <ListItemText primary="Home" />
@@ -73,8 +77,10 @@ const Footer = () => {
                                 <ListItemText primary="Features" />
                                 <ListItemText primary="Wishlist" />
                             </ListItem>
+                            </Fade>
                         </Grid>
                         <Grid item xs={12} md={3}>
+                        <Fade bottom>
                             <FooterTitle text={"Account"} />
                             <ListItem className={list}>
                                 <ListItemText primary="My Account" />
@@ -83,8 +89,10 @@ const Footer = () => {
                                 <ListItemText primary="Checkout" />
                                 <ListItemText primary="Features" />
                             </ListItem>
+                            </Fade>
                         </Grid>
                         <Grid item xs={12} md={3} >
+                        <Fade right>
                             <Box className={list}>
                                 <FooterTitle text={"Social icons"} />
                                 <ListItem sx={{ p: 0 }}>
@@ -132,6 +140,7 @@ const Footer = () => {
 
                             </ListItem>
                         </Box>
+                        </Fade>
                     </Grid>
                 </Grid>
             </Container>
