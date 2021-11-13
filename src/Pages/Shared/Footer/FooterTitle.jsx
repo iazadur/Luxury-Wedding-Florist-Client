@@ -4,7 +4,7 @@ import React from 'react';
 const FooterTitle = ({text}) => {
     return (
         <>
-            <Typography variant="h3" color="#D5E9F8" sx={{fontSize:"24px",margin:"20px 0px 5px 10px",fontFamily:"Roboto"}}>{text}</Typography>
+            <Typography variant="h3" color="#D5E9F8" sx={{fontSize:"24px",margin:"20px 0px 5px",fontFamily:"Roboto"}}>{text}</Typography>
         </>
     );
 };
