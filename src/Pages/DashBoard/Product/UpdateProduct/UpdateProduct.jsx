@@ -28,10 +28,8 @@ const UpdateProduct = () => {
     const onSubmit = data => {
         data.modifiedDate = new Date().toLocaleDateString()
         delete data._id;
-        console.log(data);
         const url = `http://localhost:5000/updateProduct/${id}`
         axios.put(url, data).then(res => {
-            console.log(res.data);
             if (res.data.modifiedCount) {
                 Swal.fire({
                     icon: 'success',
@@ -47,29 +45,6 @@ const UpdateProduct = () => {
     }
 
 
-    // const handleStatus = (e) => {
-    //     if (status === '') {
-    //         setError("OHH Shit You con't Select Any Status")
-    //     } else {
-    //         const data = { status }
-    //         const url = `http://localhost:5000/updateProduct/${id}`
-    //         axios.put(url, data).then(res => {
-    //             console.log(res.data);
-    //             if (res.data.modifiedCount) {
-    //                 Swal.fire({
-    //                     icon: 'success',
-    //                     title: 'Update Order Status Successfully!',
-    //                     showConfirmButton: false,
-    //                     timer: 1500
-    //                 })
-    //                 history.replace('/dashboard/manageAllOrders')
-    //             }
-    //         })
-    //     }
-
-
-    //     e.preventDefault()
-    // }
     return (
         <>
             <Container sx={{ mt: 10 }}>

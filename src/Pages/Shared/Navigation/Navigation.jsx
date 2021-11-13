@@ -35,7 +35,6 @@ const useStyles = makeStyles({
 export default function Navigation() {
     const [anchorEl, setAnchorEl] = useState(null);
     const { user, logout } = useAuth()
-    console.log(user);
 
 
     const open = Boolean(anchorEl);

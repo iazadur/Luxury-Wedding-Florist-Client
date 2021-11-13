@@ -37,7 +37,6 @@ const AddressForm = ({ product }) => {
         history.replace("/explore")
 
       })
-    console.log(order);
   }
   return (
     <React.Fragment>

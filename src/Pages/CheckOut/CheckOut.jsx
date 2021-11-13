@@ -18,20 +18,6 @@ const CheckOut = () => {
             })
     }, [id])
 
-    console.log(product);
-    //     const handleBlur = (e) => {
-    //         const field = e.target.name
-    //         const value = e.target.value
-    //         const newLoginData = { ...order }
-    //         newLoginData[field] = value
-    //         setOrder(newLoginData)
-    //     }
-    // console.log(order);
-    //     const handlePayment = (e) => {
-    //         console.log("payment");
-
-    //         e.preventDefault()
-    //     }
     return (
         <>
             <Navigation />

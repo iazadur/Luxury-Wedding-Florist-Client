@@ -23,7 +23,6 @@ const OrderUpdate = () => {
     useEffect(() => {
         axios.get(`http://localhost:5000/updateOrders/${id}`)
             .then(res => {
-                console.log(res.data);
                 setOrder(res.data)
             })
     }, [id])
@@ -39,7 +38,6 @@ const OrderUpdate = () => {
             const data = { status }
             const url = `http://localhost:5000/updateOrder/${id}`
             axios.put(url, data).then(res => {
-                console.log(res.data);
                 if (res.data.modifiedCount) {
                     Swal.fire({
                         icon: 'success',

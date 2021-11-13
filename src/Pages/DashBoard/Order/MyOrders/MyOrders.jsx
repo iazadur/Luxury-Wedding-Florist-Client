@@ -13,7 +13,6 @@ const MyOrders = () => {
     axios.get(`http://localhost:5000/orders/${user.email}`)
       .then(res => {
         setOrder(res.data)
-        console.log(res.data);
       })
   }, [user.email])
 

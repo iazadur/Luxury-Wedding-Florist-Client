@@ -11,12 +11,9 @@ const MakeAdmin = () => {
     const handleOnBlur = (e) => {
         setEmail(e.target.value)
     }
-    console.log(email);
     const handleAdminSubmit = (e) => {
         const user = { email }
-        console.log(user);
         user.authorization = `Bearer ${token}`
-        console.log(user);
         axios.put('http://localhost:5000/users/admin', user)
             .then((res) => {
                 if (res.data.modifiedCount) {
