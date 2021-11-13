@@ -7,12 +7,12 @@
 #### [Server](https://github.com/programming-hero-web-course-4/niche-website-server-side-iazadur)
 
 ## Key Point in Project: 
-A complete niche website management with `google` and `Email/Password` login feature 
-There is a dashboard to manage `admin panel`, `Products management`, `Orders management` and `review management`, where an admin can add or remove all of them
-Have an Dashboard with `graph`, `total earning` and recents 5 orders
-Normal user can See a dashboard in `myOrders`, `myReview`, `Payment`
-Jwt Token Verify When admin make an Admin
-Extra Features Total Earning, Graph and recents Orders in Dashboard
+⏺️ A complete niche website management with `google` and `Email/Password` login feature 
+⏺️ There is a dashboard to manage `admin panel`, `Products management`, `Orders management` and `review management`, where an admin can add or remove all of them
+⏺️ Have an Dashboard with `graph`, `total earning` and recents 5 orders
+⏺️ Normal user can See a dashboard in `myOrders`, `myReview`, `Payment`
+⏺️ Jwt Token Verify When admin make an Admin
+⏺️ Extra Features Total Earning, Graph and recents Orders in Dashboard
 
 
 ## Technology: 
