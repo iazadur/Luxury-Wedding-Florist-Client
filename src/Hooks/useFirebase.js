@@ -15,6 +15,7 @@ const useFirebase = () => {
     const [isLoading, setIsLoading] = useState(true)
     const [authError, setAuthError] = useState('')
     const [admin, setAdmin] = useState(false)
+    const [isAdmin, setIsAdmin] = useState(false)
     const [token, setToken] = useState('')
 
     const auth = getAuth()
@@ -114,9 +115,11 @@ const useFirebase = () => {
 
     // check admin or normal user 
     useEffect(() => {
+        setIsAdmin(true)
         const url = `http://localhost:5000/users/${user.email}`
         axios.get(url)
             .then(res => setAdmin(res.data.admin))
+            .finally(()=>setIsAdmin(false))
     }, [user.email])
 
     const logout = () => {
@@ -169,6 +172,7 @@ const useFirebase = () => {
     return {
         user,
         admin,
+        isAdmin,
         token,
         registerUser,
         loginUser,

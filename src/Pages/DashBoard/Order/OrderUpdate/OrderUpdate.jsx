@@ -127,6 +127,7 @@ const OrderUpdate = () => {
 
                                                             <MenuItem value={"Pending"}>Pending</MenuItem>
                                                             <MenuItem value={"Processing"}>Processing</MenuItem>
+                                                            <MenuItem value={"Rejected"}>Rejected</MenuItem>
                                                             <MenuItem value={"Shipped"}>Shipped</MenuItem>
                                                             <MenuItem value={"Delivered"}>Delivered</MenuItem>
                                                         </Select>

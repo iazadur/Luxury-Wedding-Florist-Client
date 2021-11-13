@@ -3,41 +3,14 @@ import Swal from 'sweetalert2'
 import axios from 'axios';
 import AddReview from '../AddReview/AddReview';
 import AllReview from '../ManageReview/ManageReview';
-import useAuth from '../../../../Hooks/useAuth';
 
 const Review = () => {
-    const { user } = useAuth()
-    const [review, setReview] = useState({});
+  
     const [allReview, setAllReview] = useState([]);
-    const [load,setLoad] = useState(false)
+    const [load, setLoad] = useState(false)
 
-    const handleChange = (e) => {
-        const field = e.target.name
-        const value = e.target.value
-        const newLoginData = { ...review }
-        newLoginData[field] = value
-        setReview(newLoginData)
-    };
 
-    const addReview = (e) => {
-        review.date = new Date().toDateString()
-        review.name = user.displayName
-        review.img = user.photoURL
-
-        axios.post('http://localhost:5000/review', review)
-            .then(res => {
-                setReview({})
-                setLoad(!load)
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Product Added Successfully!',
-                    showConfirmButton: false,
-                    timer: 1500
-                })
-
-            })
-        e.preventDefault()
-    }
+   
     useEffect(() => {
         axios.get('http://localhost:5000/review')
             .then(res => {
@@ -79,7 +52,7 @@ const Review = () => {
     }
     return (
         <>
-            <AddReview addReview={addReview} review={review} handleChange={handleChange} />
+            <AddReview setLoad={setLoad} load={load} />
             <AllReview review={allReview} handleDelete={handleDelete} />
         </>
     );

@@ -9,10 +9,12 @@ import Register from './Pages/Login/Register/Register';
 import Login from './Pages/Login/Login/Login';
 import Dashboard from './Pages/DashBoard/Dashboard/Dashboard';
 import AuthProvider from './Context/AuthProvider/AuthProvider';
+import AdminRoute from './Pages/Login/AdminRoute/AdminRoute';
 import PrivateRoute from './Pages/Login/PrivateRoute/PrivateRoute';
 import CheckOut from './Pages/CheckOut/CheckOut';
 import OrderUpdate from './Pages/DashBoard/Order/OrderUpdate/OrderUpdate';
 import UpdateProduct from './Pages/DashBoard/Product/UpdateProduct/UpdateProduct';
+import PublicRoute from './Pages/Login/PublicRoute/PublicRoute';
 
 function App() {
   return (
@@ -20,21 +22,21 @@ function App() {
       <AuthProvider>
         <Router>
           <Switch>
-            <Route path="/login">
+            <PublicRoute path="/login">
               <Login />
-            </Route>
-            <Route path="/register">
+            </PublicRoute>
+            <PublicRoute path="/register">
               <Register />
-            </Route>
-            <Route path="/checkout/:id">
+            </PublicRoute>
+            <PrivateRoute path="/checkout/:id">
               <CheckOut />
-            </Route>
-            <Route path="/orderUpdate/:id">
+            </PrivateRoute>
+            <AdminRoute path="/orderUpdate/:id">
               <OrderUpdate />
-            </Route>
-            <Route path="/updateProduct/:id">
+            </AdminRoute>
+            <AdminRoute path="/updateProduct/:id">
               <UpdateProduct />
-            </Route>
+            </AdminRoute>
             <PrivateRoute path="/dashboard">
               <Dashboard />
             </PrivateRoute>

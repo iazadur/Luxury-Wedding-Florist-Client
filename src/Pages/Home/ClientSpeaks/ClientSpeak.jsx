@@ -8,21 +8,21 @@ import { Container, Rating } from '@mui/material';
 
 
 
-const ClientSpeak = ({ username, img, review, rating }) => {
+const ClientSpeak = ({ name, img, feedback, rating }) => {
 
 
 
     return (
         <>
-            <Container sx={{ justifyContent: "center", display: 'flex', mb: 2 }}>
+            <Container sx={{ justifyContent: "center", display: 'flex' }}>
                 <Card sx={{ maxWidth: 345, display: 'flex', flexDirection: "column", alignItems: "center" }}>
                     <Avatar src={img} />
-                    <Typography variant={"subtitle1"}>{username}</Typography>
+                    <Typography variant={"subtitle1"}>{name}</Typography>
 
 
                     <CardContent>
-                        <Typography sx={{bgcolor:"#ECF0F1",p:1,borderRadius:3}} variant="body2" color="text.secondary">
-                            {review}
+                        <Typography sx={{ bgcolor: "#ECF0F1", p: 1, borderRadius: 3 }} variant="body2" color="text.secondary">
+                            {feedback}
                         </Typography>
                     </CardContent>
                     <CardActions disableSpacing>

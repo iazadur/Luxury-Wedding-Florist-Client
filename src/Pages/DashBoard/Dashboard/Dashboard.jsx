@@ -90,7 +90,7 @@ const useStyles = makeStyles({
 const mdTheme = createTheme();
 
 const Dashboard = () => {
-  const { user, logout } = useAuth()
+  const { user, logout, admin } = useAuth()
   let { path, url } = useRouteMatch();
   const [open, setOpen] = React.useState(false);
   const toggleDrawer = () => {
@@ -172,34 +172,34 @@ const Dashboard = () => {
                 </ListItem>
               </Link>
 
-              <Link to={`${url}/myOrders`}>
+              {user && !admin && <Link to={`${url}/myOrders`}>
                 <ListItem button>
                   <ListItemIcon>
                     <ShoppingCart />
                   </ListItemIcon>
                   <ListItemText primary="My Orders" />
                 </ListItem>
-              </Link>
+              </Link>}
 
-              <Link to={`${url}/addReview`}>
+              {user && !admin && <Link to={`${url}/addReview`}>
                 <ListItem button>
                   <ListItemIcon>
                     <People />
                   </ListItemIcon>
                   <ListItemText primary="Add Review" />
                 </ListItem>
-              </Link>
-              <Link to={`${url}/payment`}>
+              </Link>}
+              {user && !admin && <Link to={`${url}/payment`}>
                 <ListItem button>
                   <ListItemIcon>
                     <PaymentIcon />
                   </ListItemIcon>
                   <ListItemText primary="Payment" />
                 </ListItem>
-              </Link>
+              </Link>}
 
-
-              <Link to={`${url}/manageAllOrders`}>
+              {/* Admin section */}
+              {admin && <Link to={`${url}/manageAllOrders`}>
                 <ListItem button>
                   <ListItemIcon>
                     <BarChart />
@@ -207,34 +207,34 @@ const Dashboard = () => {
                   <ListItemText primary="Manage All Orders" />
                 </ListItem>
               </Link>
+              }
 
 
-
-              <Link to={`${url}/manageProducts`}>
+              {admin && <Link to={`${url}/manageProducts`}>
                 <ListItem button>
                   <ListItemIcon>
                     <ProductionQuantityLimitsIcon />
                   </ListItemIcon>
                   <ListItemText primary="Manage Products" />
                 </ListItem>
-              </Link>
+              </Link>}
 
-              <Link to={`${url}/addProduct`}>
+              {admin && <Link to={`${url}/addProduct`}>
                 <ListItem button>
                   <ListItemIcon>
                     <AddBoxIcon />
                   </ListItemIcon>
                   <ListItemText primary="Add Product" />
                 </ListItem>
-              </Link>
-              <Link to={`${url}/makeAdmin`}>
+              </Link>}
+              {admin && <Link to={`${url}/makeAdmin`}>
                 <ListItem button>
                   <ListItemIcon>
                     <AddCircleIcon />
                   </ListItemIcon>
                   <ListItemText primary="Make Adimn" />
                 </ListItem>
-              </Link>
+              </Link>}
             </div>
 
           </List>
@@ -289,12 +289,12 @@ const Dashboard = () => {
               <AdminRoute path={`${path}/addProduct`}>
                 <AddProduct />
               </AdminRoute>
-              <Route path={`${path}/manageAllOrders`}>
+              <AdminRoute path={`${path}/manageAllOrders`}>
                 <ManageOrders />
-              </Route>
-              <Route path={`${path}/manageProducts`}>
+              </AdminRoute>
+              <AdminRoute path={`${path}/manageProducts`}>
                 <ManageProducts />
-              </Route>
+              </AdminRoute>
             </Switch>
           </Container>
         </Box>
