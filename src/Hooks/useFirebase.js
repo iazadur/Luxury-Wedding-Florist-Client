@@ -116,11 +116,16 @@ const useFirebase = () => {
     // check admin or normal user 
     useEffect(() => {
         setIsAdmin(true)
-        const url = `http://localhost:5000/users/${user.email}`
+        const url = `https://boiling-temple-62751.herokuapp.com/users/${user?.email}`
         axios.get(url)
-            .then(res => setAdmin(res.data.admin))
-            .finally(()=>setIsAdmin(false))
-    }, [user.email])
+            .then(res => {
+                if (res.data.admin) {
+                    setAdmin(res.data.admin)
+                    setIsAdmin(false)
+                }
+            })
+            
+    }, [user?.email])
 
     const logout = () => {
         setIsLoading(true)
@@ -136,7 +141,7 @@ const useFirebase = () => {
     const saveUser = (email, displayName, method) => {
         const user = { email, displayName }
         if (method === 'post') {
-            axios.post('http://localhost:5000/users', user)
+            axios.post('https://boiling-temple-62751.herokuapp.com/users', user)
                 .then((res) => {
                     if (res.data.insertedId) {
 
@@ -151,7 +156,7 @@ const useFirebase = () => {
                 })
         }
         if (method === 'put') {
-            axios.put('http://localhost:5000/users', user)
+            axios.put('https://boiling-temple-62751.herokuapp.com/users', user)
                 .then((res) => {
                     if (res.data.upsertedId) {
                         Swal.fire({

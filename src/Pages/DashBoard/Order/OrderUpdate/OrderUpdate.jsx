@@ -21,7 +21,7 @@ const OrderUpdate = () => {
 
     const { id } = useParams()
     useEffect(() => {
-        axios.get(`http://localhost:5000/updateOrders/${id}`)
+        axios.get(`https://boiling-temple-62751.herokuapp.com/updateOrders/${id}`)
             .then(res => {
                 setOrder(res.data)
             })
@@ -36,7 +36,7 @@ const OrderUpdate = () => {
             setError("OHH Shit You con't Select Any Status")
         } else {
             const data = { status }
-            const url = `http://localhost:5000/updateOrder/${id}`
+            const url = `https://boiling-temple-62751.herokuapp.com/updateOrder/${id}`
             axios.put(url, data).then(res => {
                 if (res.data.modifiedCount) {
                     Swal.fire({
@@ -132,7 +132,7 @@ const OrderUpdate = () => {
                                                     </FormControl>
                                                     <MuiButton type="submit">ok</MuiButton>
                                                 </Grid>
-                                               
+
                                             </React.Fragment>
 
                                         </Grid>

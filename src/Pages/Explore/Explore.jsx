@@ -15,7 +15,7 @@ const override = css`
 const Explore = () => {
     const [products, setProducts] = useState([])
     useEffect(() => {
-        axios.get('http://localhost:5000/products')
+        axios.get('https://boiling-temple-62751.herokuapp.com/products')
             .then(res => {
                 setProducts(res.data)
             })
@@ -28,59 +28,59 @@ const Explore = () => {
                 <DotLoader color="#E317E3" css={override} size={50} />
             </Box>
             ) : (
-            <Container sx={{ my: 15 }}>
+                <Container sx={{ my: 15 }}>
 
-                <Grid container spacing={1}>
-                    {
-                        products.map((p) => (
-                            <Grid key={p._id} xs={12} md={6} item>
+                    <Grid container spacing={1}>
+                        {
+                            products.map((p) => (
+                                <Grid key={p._id} xs={12} md={6} item>
 
 
-                                <Card>
-                                    <Grid container>
-                                        <Grid xs={12} sm={6} item>
-                                            <CardMedia
-                                                component="img"
-                                                width="100%"
-                                                image={p.imgUrl}
-                                                alt="green iguana"
+                                    <Card>
+                                        <Grid container>
+                                            <Grid xs={12} sm={6} item>
+                                                <CardMedia
+                                                    component="img"
+                                                    width="100%"
+                                                    image={p.imgUrl}
+                                                    alt="green iguana"
 
-                                            />
-                                            <NavLink to={`/checkout/${p._id}`} className="textDecoration">
-                                                <CardActions sx={{ justifyContent: "center", background: 'linear-gradient(120deg, #FF8CAB ,#7366FF)', }}>
+                                                />
+                                                <NavLink to={`/checkout/${p._id}`} className="textDecoration">
+                                                    <CardActions sx={{ justifyContent: "center", background: 'linear-gradient(120deg, #FF8CAB ,#7366FF)', }}>
 
-                                                    <Button size="small" sx={{ color: "#fff" }} >Buy Now</Button>
-                                                </CardActions>
-                                            </NavLink>
+                                                        <Button size="small" sx={{ color: "#fff" }} >Buy Now</Button>
+                                                    </CardActions>
+                                                </NavLink>
+                                            </Grid>
+                                            <Grid xs={12} sm={6} item>
+                                                <CardContent sx={{ bgcolor: "#ECF0F1", p: 3 }}>
+                                                    <Typography gutterBottom variant="h5" align="left" sx={{ minHeight: "74px" }} component="div">
+                                                        {p.title}
+                                                    </Typography>
+                                                    <Typography variant="body2" align="left" color="text.secondary">
+                                                        {p.desc}
+                                                    </Typography>
+                                                    <Typography sx={{ my: 2 }} align="left" variant="h4">${p.price}</Typography>
+                                                    <Rating className="captionitem" name="read-only" value={p.rating} readOnly />
+                                                </CardContent>
+
+                                            </Grid>
+
                                         </Grid>
-                                        <Grid xs={12} sm={6} item>
-                                            <CardContent sx={{ bgcolor: "#ECF0F1", p: 3 }}>
-                                                <Typography gutterBottom variant="h5" align="left" sx={{ minHeight: "74px" }} component="div">
-                                                    {p.title}
-                                                </Typography>
-                                                <Typography variant="body2" align="left" color="text.secondary">
-                                                    {p.desc}
-                                                </Typography>
-                                                <Typography sx={{ my: 2 }} align="left" variant="h4">${p.price}</Typography>
-                                                <Rating className="captionitem" name="read-only" value={p.rating} readOnly />
-                                            </CardContent>
-
-                                        </Grid>
-
-                                    </Grid>
 
 
 
 
 
 
-                                </Card>
+                                    </Card>
 
 
-                            </Grid>
-                        ))}
-                </Grid>
-            </Container>
+                                </Grid>
+                            ))}
+                    </Grid>
+                </Container>
             )}
 
 

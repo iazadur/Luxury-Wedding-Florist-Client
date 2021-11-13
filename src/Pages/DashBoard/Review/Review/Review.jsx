@@ -5,14 +5,14 @@ import AddReview from '../AddReview/AddReview';
 import AllReview from '../ManageReview/ManageReview';
 
 const Review = () => {
-  
+
     const [allReview, setAllReview] = useState([]);
     const [load, setLoad] = useState(false)
 
 
-   
+
     useEffect(() => {
-        axios.get('http://localhost:5000/review')
+        axios.get('https://boiling-temple-62751.herokuapp.com/review')
             .then(res => {
                 setAllReview(res.data)
             })
@@ -32,7 +32,7 @@ const Review = () => {
         })
             .then((result) => {
                 if (result.isConfirmed) {
-                    axios.delete(`http://localhost:5000/review/${id}`)
+                    axios.delete(`https://boiling-temple-62751.herokuapp.com/review/${id}`)
                         .then(res => {
                             if (res.data.deletedCount > 0) {
 

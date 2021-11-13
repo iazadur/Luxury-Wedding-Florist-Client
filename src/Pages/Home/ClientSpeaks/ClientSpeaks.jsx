@@ -19,7 +19,7 @@ const ClientSpeaks = () => {
 
 
     useEffect(() => {
-        axios.get('http://localhost:5000/review')
+        axios.get('https://boiling-temple-62751.herokuapp.com/review')
             .then(res => {
                 setFeedback(res.data)
             })
@@ -28,8 +28,8 @@ const ClientSpeaks = () => {
         <>
             <Box sx={{ my: 10 }}>
                 <Title>Clients Speaks </Title>
-                
-                <Box sx={{height:"2px",bgcolor:"#FF8CAB",width:"100px",m:"0 auto"}}></Box>
+
+                <Box sx={{ height: "2px", bgcolor: "#FF8CAB", width: "100px", m: "0 auto" }}></Box>
                 {feedBack.length === 0 ?
                     <div className="">
                         {"loading"}

@@ -20,7 +20,7 @@ const AddReview = ({ setLoad, load }) => {
 
 
 
-        axios.post('http://localhost:5000/review', data)
+        axios.post('https://boiling-temple-62751.herokuapp.com/review', data)
             .then(res => {
                 setLoad(!load)
                 Swal.fire({

@@ -1,16 +1,23 @@
 import { Delete, Edit } from '@mui/icons-material';
-import { Avatar, Grid, Link, Paper, Table, TableBody, TableCell, TableHead, TableRow, CardHeader } from '@mui/material';
+import { Avatar, Grid, Link, Paper,Box, Table, TableBody, TableCell, TableHead, TableRow, CardHeader } from '@mui/material';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import Title from '../../../Shared/Title/Title';
+import { css } from "@emotion/react";
+import DotLoader from "react-spinners/DotLoader";
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+`;
 
 const ManageOrders = () => {
 
     const [orders, setOrders] = useState([])
     useEffect(() => {
-        axios.get('http://localhost:5000/orders')
+        axios.get('https://boiling-temple-62751.herokuapp.com/orders')
             .then(res => {
                 setOrders(res.data)
             })
@@ -28,7 +35,7 @@ const ManageOrders = () => {
         })
             .then((result) => {
                 if (result.isConfirmed) {
-                    axios.delete(`http://localhost:5000/orders/${id}`)
+                    axios.delete(`https://boiling-temple-62751.herokuapp.com/orders/${id}`)
                         .then(res => {
                             if (res.data.deletedCount > 0) {
 
@@ -49,7 +56,11 @@ const ManageOrders = () => {
 
     return (
         <>
-            <Grid container>
+            {orders.length === 0 ? (
+                <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignContent: "center", height: "100vh" }} >
+                    <DotLoader color="#E317E3" css={override} size={50} />
+                </Box>
+            ) : (<Grid container>
                 <Grid item xs={12}>
                     <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
                         <React.Fragment>
@@ -68,7 +79,7 @@ const ManageOrders = () => {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {orders.map((row,id) => (
+                                    {orders.map((row, id) => (
                                         <TableRow key={row._id}>
                                             <TableCell>{id}</TableCell>
                                             <TableCell>{row.date}</TableCell>
@@ -100,7 +111,8 @@ const ManageOrders = () => {
                         </React.Fragment>
                     </Paper>
                 </Grid>
-            </Grid>
+            </Grid>)}
+
         </>
     );
 };

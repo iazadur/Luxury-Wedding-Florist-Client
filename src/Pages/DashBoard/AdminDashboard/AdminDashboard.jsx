@@ -9,11 +9,12 @@ import Orders from '../Orders';
 const AdminDashboard = () => {
     const [orders, setOrders] = React.useState([])
     React.useEffect(() => {
-        axios.get('http://localhost:5000/orders')
+        axios.get('https://boiling-temple-62751.herokuapp.com/orders')
             .then(res => {
                 setOrders(res.data)
             })
     }, [])
+    // https://boiling-temple-62751.herokuapp.com/
     return (
         <>
             <Grid container spacing={3}>

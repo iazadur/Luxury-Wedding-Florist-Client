@@ -12,7 +12,7 @@ const CheckOut = () => {
 
     const { id } = useParams()
     useEffect(() => {
-        axios.get(`http://localhost:5000/products/${id}`)
+        axios.get(`https://boiling-temple-62751.herokuapp.com/products/${id}`)
             .then(res => {
                 setProduct(res.data)
             })

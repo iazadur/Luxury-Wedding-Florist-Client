@@ -7,51 +7,51 @@ import useAuth from '../../../../Hooks/useAuth';
 import Title from '../../../Shared/Title/Title';
 
 const MyOrders = () => {
-  const { user } = useAuth()
-  const [order, setOrder] = useState([])
-  useEffect(() => {
-    axios.get(`http://localhost:5000/orders/${user.email}`)
-      .then(res => {
-        setOrder(res.data)
-      })
-  }, [user.email])
+    const { user } = useAuth()
+    const [order, setOrder] = useState([])
+    useEffect(() => {
+        axios.get(`https://boiling-temple-62751.herokuapp.com/orders/${user.email}`)
+            .then(res => {
+                setOrder(res.data)
+            })
+    }, [user.email])
 
 
-  const handleDelete = (id) => {
-    Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#d33',
-        cancelButtonColor: '#3085d6',
-        confirmButtonText: 'Yes, delete it!'
-    })
-        .then((result) => {
-            if (result.isConfirmed) {
-                axios.delete(`http://localhost:5000/orders/${id}`)
-                    .then(res => {
-                        if (res.data.deletedCount > 0) {
-
-                            const remainingorders = order.filter(user => user._id !== id);
-                            setOrder(remainingorders);
-                            Swal.fire({
-                                title: 'Deleted!',
-                                text: 'The Order has been deleted.',
-                                icon: 'success',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
-                        }
-                    })
-            }
+    const handleDelete = (id) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!'
         })
-}
+            .then((result) => {
+                if (result.isConfirmed) {
+                    axios.delete(`https://boiling-temple-62751.herokuapp.com/orders/${id}`)
+                        .then(res => {
+                            if (res.data.deletedCount > 0) {
+
+                                const remainingorders = order.filter(user => user._id !== id);
+                                setOrder(remainingorders);
+                                Swal.fire({
+                                    title: 'Deleted!',
+                                    text: 'The Order has been deleted.',
+                                    icon: 'success',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                            }
+                        })
+                }
+            })
+    }
 
 
-  return (
-    <>
-      <Grid container>
+    return (
+        <>
+            <Grid container>
                 <Grid item xs={12}>
                     <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
                         <React.Fragment>
@@ -70,7 +70,7 @@ const MyOrders = () => {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {order.map((row,id) => (
+                                    {order.map((row, id) => (
                                         <TableRow key={row._id}>
                                             <TableCell>{id}</TableCell>
                                             <TableCell>{row.date}</TableCell>
@@ -87,7 +87,7 @@ const MyOrders = () => {
 
                                             <TableCell align="right">{`$${row.ammount}`}</TableCell>
                                             <TableCell>
-                                              
+
                                                 <Delete sx={{ color: "red", cursor: "pointer" }} onClick={() => handleDelete(row._id)} />
                                             </TableCell>
                                         </TableRow>
@@ -101,8 +101,8 @@ const MyOrders = () => {
                     </Paper>
                 </Grid>
             </Grid>
-    </>
-  );
+        </>
+    );
 };
 
 export default MyOrders;

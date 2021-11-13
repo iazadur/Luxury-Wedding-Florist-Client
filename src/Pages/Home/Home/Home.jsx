@@ -11,7 +11,7 @@ import ShopFeatures from '../ShopFeatures/ShopFeatures';
 const Home = () => {
     const [products, setProducts] = useState([])
     useEffect(() => {
-        axios.get('http://localhost:5000/products')
+        axios.get('https://boiling-temple-62751.herokuapp.com/products')
             .then(res => {
                 setProducts(res.data)
             })

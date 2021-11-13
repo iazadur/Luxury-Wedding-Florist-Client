@@ -11,8 +11,8 @@ const AddProduct = () => {
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = data => {
         data.date = new Date().toLocaleDateString()
-        if (data.rating <= 5 && data.rating > 0 ) {
-            axios.post('http://localhost:5000/products', data)
+        if (data.rating <= 5 && data.rating > 0) {
+            axios.post('https://boiling-temple-62751.herokuapp.com/products', data)
                 .then(res => {
                     reset()
                     Swal.fire({

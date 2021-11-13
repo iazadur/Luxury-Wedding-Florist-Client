@@ -5,7 +5,7 @@ import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import MuiButton from '../../StyleComponents/MuiButton';
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { useForm } from "react-hook-form";
 import axios from 'axios';
 import Swal from 'sweetalert2';
@@ -25,7 +25,7 @@ const AddressForm = ({ product }) => {
     order.productUrl = product.imgUrl
     order.email = user.email
     order.status = "pending"
-    axios.post('http://localhost:5000/order', order)
+    axios.post('https://boiling-temple-62751.herokuapp.com/order', order)
       .then(res => {
         reset()
         Swal.fire({

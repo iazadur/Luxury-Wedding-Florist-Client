@@ -1,4 +1,4 @@
-import { Alert, Card, CardContent, CardMedia, Container, Grid,  Paper, Rating, TextField, Typography } from '@mui/material';
+import { Alert, Card, CardContent, CardMedia, Container, Grid, Paper, Rating, TextField, Typography } from '@mui/material';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
@@ -11,14 +11,14 @@ const UpdateProduct = () => {
     const [product, setProduct] = useState([])
     const history = useHistory()
     const { error, setError } = useAuth()
-    const { register, handleSubmit, reset } = useForm({defaultValues: product });
+    const { register, handleSubmit, reset } = useForm({ defaultValues: product });
 
 
 
 
     const { id } = useParams()
     useEffect(() => {
-        axios.get(`http://localhost:5000/updateProduct/${id}`)
+        axios.get(`https://boiling-temple-62751.herokuapp.com/updateProduct/${id}`)
             .then(res => {
                 setProduct(res.data)
                 reset(res.data)
@@ -28,7 +28,7 @@ const UpdateProduct = () => {
     const onSubmit = data => {
         data.modifiedDate = new Date().toLocaleDateString()
         delete data._id;
-        const url = `http://localhost:5000/updateProduct/${id}`
+        const url = `https://boiling-temple-62751.herokuapp.com/updateProduct/${id}`
         axios.put(url, data).then(res => {
             if (res.data.modifiedCount) {
                 Swal.fire({
@@ -38,7 +38,7 @@ const UpdateProduct = () => {
                     timer: 1500
                 })
                 history.replace('/dashboard/manageProducts')
-            }else{
+            } else {
                 setError("You Can't not change Anything")
             }
         })
