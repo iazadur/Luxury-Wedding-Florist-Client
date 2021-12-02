@@ -4,33 +4,17 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
-// import MenuIcon from '@mui/icons-material/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import { Avatar, Container, Divider, ListItemIcon, Tooltip } from '@mui/material';
+import { Avatar, Container, Divider, ListItemIcon, Tooltip, useTheme } from '@mui/material';
 import { Logout } from '@mui/icons-material';
 import { NavLink } from 'react-router-dom';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 
 import { makeStyles } from '@mui/styles';
 import useAuth from '../../../Hooks/useAuth';
-const useStyles = makeStyles({
-    logo: {
-        color: "#fff",
-        fontSize: "16px",
-        fontFamily: "Roboto",
-        fontWeight: "600",
 
-    },
-    logoSpan: {
-        fontSize: "16px",
-        color: "#F1C40F"
-    },
-    textD: {
-        textDecoration: "none !important",
-        color: "rgba(0, 0, 0, 0.87) !important"
-    }
-})
 
 export default function Navigation() {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -45,7 +29,37 @@ export default function Navigation() {
         setAnchorEl(null);
     };
 
-    const { logo, logoSpan, textD } = useStyles()
+
+    let theme = useTheme()
+    const useStyles = makeStyles({
+        logo: {
+            color: "#fff",
+            fontSize: "16px",
+            fontFamily: "Roboto",
+            fontWeight: "600",
+
+        },
+        logoSpan: {
+            fontSize: "16px",
+            color: "#F1C40F"
+        },
+        textD: {
+            textDecoration: "none !important",
+            color: "rgba(0, 0, 0, 0.87) !important"
+        },
+        navItem: {
+            color: '#fff',
+            textDecoration: "none"
+        },
+        navIcon: {
+            [theme.breakpoints.up('sm')]: {
+                display: 'none !important',
+            },
+        },
+        equal: { display: 'flex', alignItems: 'center', textAlign: 'center', columnGap: "10px" }
+    })
+
+    const { logo, logoSpan, navItem, equal, navIcon,textD } = useStyles()
     return (
 
         <Box sx={{ flexGrow: 1 }}>
@@ -53,33 +67,39 @@ export default function Navigation() {
             <AppBar position="fixed" sx={{ bgcolor: "#000" }}>
                 <Container>
                     <Toolbar sx={{ display: 'flex', justifyContent: "space-between" }}>
-                    <NavLink className='textDecoration' to='/'>
-                        <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
-                           
-                            <Typography className={logo} variant="h6body1">TRE<span className={logoSpan}>ND</span></Typography>
+                        <Box className={equal}>
+                            <IconButton
+                                size="large"
+                                edge="start"
+                                color="inherit"
+                                aria-label="menu"
+                                className={navIcon}
+                            >
+                                <MenuIcon />
+                            </IconButton>
+                            <NavLink className={navItem} to='/'>
+                                <Box className={equal}>
+                                    <Typography className={logo} variant="h6body1">TRE<span className={logoSpan}>ND</span></Typography>
+                                </Box>
+                            </NavLink>
+
+
                         </Box>
-                        </NavLink>
-                        <NavLink className='textDecoration' to='/explore'>
-                            <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center',color:'white' }}>
-                                <Typography
-                                    component="h1"
-                                    variant="h6"
-                                    color="inherit"
-                                    noWrap
-                                    sx={{ flexGrow: 1 }}
-                                >
-                                    Explore
-                                </Typography>
-                            </Box>
-                        </NavLink>
-                        
+                        <Box className={equal}>
+                            <NavLink className={navItem} to='/'><Typography>Home</Typography></NavLink>
+                            <NavLink className={navItem} to='/explore'><Typography>Explore</Typography></NavLink>
+                            <NavLink className={navItem} to='/contact'><Typography>Contact</Typography></NavLink>
+                            <NavLink className={navItem} to='/About'><Typography>About</Typography></NavLink>
+                        </Box>
 
 
-                        <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
+
+                        <Box className={equal}>
                             {
-                                !user?.email ? <NavLink sx={{ textDecoration: "none" }} to="/login">
-                                    <Typography sx={{ color: "#fff" }}>Login</Typography>
-                                </NavLink> :
+                                !user?.email ? <Box className={equal}>
+                                    <NavLink to="/login" className={navItem}><Typography>Sign in</Typography></NavLink>
+                                    <NavLink to="/register" className={navItem}><Typography>Sign up</Typography></NavLink>
+                                </Box> :
                                     <Tooltip title="Account settings">
                                         <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }}>
                                             <Avatar src={user?.photoURL} sx={{ width: 32, height: 32 }} />
