@@ -17,6 +17,7 @@ import UpdateProduct from './Pages/DashBoard/Product/UpdateProduct/UpdateProduct
 import PublicRoute from './Pages/Login/PublicRoute/PublicRoute';
 import Explore from './Pages/Explore/Explore';
 import NotFound from './Pages/NotFound/NotFound';
+import Contact from './Pages/Contact/Contact';
 
 function App() {
   return (
@@ -44,6 +45,9 @@ function App() {
             </PrivateRoute>
             <Route path="/explore">
               <Explore />
+            </Route>
+            <Route path="/contact">
+              <Contact />
             </Route>
             <Route exact path="/">
               <Home />
